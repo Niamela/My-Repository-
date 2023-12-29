@@ -54,6 +54,7 @@ dependencies:
   cloud_firestore:
   file_picker:
   font_awesome_flutter:
+  cached_network_image:
 
 
 dev_dependencies:

@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -11,14 +12,14 @@ import 'package:url_strategy/url_strategy.dart';
 import 'controllers/google_signin_provider.dart';
 
 Future<void> main() async {
-  // await Firebase.initializeApp(
-  //     options: FirebaseOptions(
-  //       apiKey: "AIzaSyAHkMtxcfGPIYBpzkTG_ETr8KO7kmZNNEc",
-  //     appId: "1:783100640985:web:008a904a33ac42e72148c8",
-  //     messagingSenderId: "783100640985",
-  //       projectId: "local-mining-supplier",));
+  await Firebase.initializeApp(
+      options: FirebaseOptions(
+    apiKey: "AIzaSyAHkMtxcfGPIYBpzkTG_ETr8KO7kmZNNEc",
+    appId: "1:783100640985:web:008a904a33ac42e72148c8",
+    messagingSenderId: "783100640985",
+    projectId: "local-mining-supplier",
+  ));
   setPathUrlStrategy();
-  // await FirebaseFirestore.instance.collection("users").doc("").get().then((value) => print(" ${value.data()!["name"]}"));
   WidgetsFlutterBinding.ensureInitialized();
   final state = LoginState(await SharedPreferences.getInstance());
   state.checkLoggedIn();
@@ -83,9 +84,8 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
                 primarySwatch: goldenSwatch,
                 primaryColor: Colors.white,
-                textTheme: TextTheme(
-                    subtitle1:
-                        TextStyle(color: Colors.yellow.withOpacity(0.5)))),
+                textTheme:
+                    TextTheme(subtitle1: TextStyle(color: Color(0xFFA67C00)))),
           );
         }),
       ),

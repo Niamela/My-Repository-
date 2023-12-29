@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:local_mining_supplier/view/home/home.dart';
+import 'package:local_mining_supplier/view/profile/profile.dart';
 import 'package:local_mining_supplier/view/sign_up/sign_up.dart';
 import 'package:local_mining_supplier/view/splash/splash.dart';
 
@@ -13,6 +14,7 @@ class AppRoutes {
   static const homeScreen = "dashboard";
   static const loginScreen = "login";
   static const signUpScreen = "signup";
+  static const userProfileScreen = "userprofile";
 }
 
 class AppPaths {
@@ -20,6 +22,7 @@ class AppPaths {
   static const homepath = "/dashboard";
   static const loginPath = "/login";
   static const signUpPath = "/signup";
+  static const userProfilePath = "/userprofile";
 }
 
 class MyRouter {
@@ -34,11 +37,11 @@ class MyRouter {
         final loggedIn = loginState.loggedIn;
         final goingToLogin = state.location == AppPaths.loginPath;
         final goingToSignup = state.location == AppPaths.signUpPath;
-        if (goingToSignup) {
+        if (goingToSignup && !loggedIn) {
           return AppPaths.signUpPath;
         } else if (!loggedIn && !goingToLogin) {
           return AppPaths.initialPath;
-        } else if (loggedIn && goingToLogin) {
+        } else if (loggedIn && (goingToLogin || goingToSignup)) {
           return AppPaths.homepath;
         } else {
           return null;
@@ -73,6 +76,13 @@ class MyRouter {
           path: AppPaths.homepath,
           pageBuilder: (context, state) {
             return MaterialPage(child: HomeScreen());
+          },
+        ),
+        GoRoute(
+          name: AppRoutes.userProfileScreen,
+          path: AppPaths.userProfilePath,
+          pageBuilder: (context, state) {
+            return MaterialPage(child: ProfileScreen());
           },
         ),
       ],
