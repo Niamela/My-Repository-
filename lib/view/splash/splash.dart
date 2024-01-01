@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
@@ -15,10 +14,10 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
-    Timer(Duration(seconds: 2), () => GoRouter.of(context).push(AppPaths.loginPath));
+    Timer(Duration(seconds: 2),
+        () => GoRouter.of(context).push(AppPaths.homepath));
     super.initState();
   }
 
@@ -26,7 +25,9 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: SpinKitChasingDots(color: Colors.black,),
+        child: SpinKitChasingDots(
+          color: Colors.black,
+        ),
       ),
     );
   }

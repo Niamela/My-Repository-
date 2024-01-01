@@ -55,6 +55,7 @@ dependencies:
   file_picker:
   font_awesome_flutter:
   cached_network_image:
+  standard_searchbar:
 
 
 dev_dependencies:
@@ -79,10 +80,12 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  generate: true
 
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
+    - assets/i18n/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

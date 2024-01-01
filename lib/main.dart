@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:local_mining_supplier/router/login_state_check.dart';
 import 'package:local_mining_supplier/router/routes.dart';
@@ -72,9 +73,20 @@ class MyApp extends StatelessWidget {
             routeInformationProvider: router.routeInformationProvider,
             routeInformationParser: router.routeInformationParser,
             title: 'Local Mining Supplier',
+            // localeResolutionCallback: (Locale? userLocale, supportedLocales) {
+            //   for (var locale in supportedLocales) {
+            //     if (locale.languageCode == userLocale!.languageCode &&
+            //         locale.countryCode == userLocale.countryCode) {
+            //       return userLocale;
+            //     }
+            //   }
+            //   return supportedLocales.first;
+            // },
             localizationsDelegates: [
               GlobalMaterialLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate
+              GlobalCupertinoLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              // LocalizationHelper.delegate
             ],
             supportedLocales: [
               const Locale('en', 'US'), // English
