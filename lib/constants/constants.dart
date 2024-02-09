@@ -88,14 +88,49 @@ Widget topMenuBar(context) {
               )
             : SizedBox(),
         FirebaseAuth.instance.currentUser != null
-            ? Padding(
-                padding: EdgeInsets.only(right: 10.sp),
-                child: IconButton(
-                  icon: Icon(Icons.power_settings_new_sharp),
-                  onPressed: () {
-                    loginController.logout(context);
-                  },
-                ),
+            ? Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(right: 10.sp),
+                    child: IconButton(
+                      hoverColor: Colors.white,
+                      splashRadius: 8.sp,
+                      icon: Icon(Icons.power_settings_new_sharp),
+                      onPressed: () {
+                        loginController.logout(context);
+                      },
+                    ),
+                  ),
+                  GoRouter.of(context).location == AppPaths.userProfilePath
+                      ? Container()
+                      : Padding(
+                          padding: EdgeInsets.only(
+                              right: 10.sp, top: 2.sp, bottom: 2.5.sp),
+                          child: InkWell(
+                            splashColor: Colors.white,
+                            radius: 8.sp,
+                            onTap: () {
+                              if (GoRouter.of(context).location !=
+                                  AppPaths.userProfilePath) {
+                                GoRouter.of(context)
+                                    .push(AppPaths.userProfilePath);
+                              } else {
+                                loginController.logout(context);
+                              }
+                            },
+                            hoverColor: Colors.white,
+                            borderRadius: BorderRadius.circular(10.sp),
+                            child: CircleAvatar(
+                              maxRadius: 6.sp,
+                              backgroundColor: Colors.white,
+                              child: Icon(
+                                Icons.person,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        )
+                ],
               )
             : GoRouter.of(context).location == AppPaths.loginPath ||
                     GoRouter.of(context).location == AppPaths.signUpPath ||
@@ -126,33 +161,6 @@ Widget topMenuBar(context) {
                       }),
                     ),
                   )
-        // GoRouter.of(context).location == AppPaths.userProfilePath ||
-        //         GoRouter.of(context).location == AppPaths.homepath
-        //     ? Padding(
-        //         padding:
-        //             EdgeInsets.only(right: 10.sp, top: 2.sp, bottom: 2.5.sp),
-        //         child: InkWell(
-        //           onTap: () {
-        //             if (GoRouter.of(context).location !=
-        //                 AppPaths.userProfilePath) {
-        //               GoRouter.of(context).push(AppPaths.userProfilePath);
-        //             } else {
-        //               loginController.logout(context);
-        //             }
-        //           },
-        //           hoverColor: Color(0xFFFFD700),
-        //           borderRadius: BorderRadius.circular(10.sp),
-        //           child:
-        //               GoRouter.of(context).location == AppPaths.userProfilePath
-        //                   ? Icon(Icons.power_settings_new_sharp)
-        //                   : CircleAvatar(
-        //                       maxRadius: 8.sp,
-        //                       backgroundImage: CachedNetworkImageProvider(
-        //                           "https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/3812e851a005c89864aa20fbe7961b72-1675812653471/f918c1dd-9e66-4798-b30d-908aa689431a.jpg"),
-        //                     ),
-        //         ),
-        //       )
-        //     : Container()
       ],
     ),
   );

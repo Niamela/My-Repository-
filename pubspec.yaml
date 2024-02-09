@@ -53,6 +53,7 @@ dependencies:
   fluttertoast:
   cloud_firestore:
   file_picker:
+  url_launcher_plus:
   font_awesome_flutter:
   cached_network_image:
   standard_searchbar:
