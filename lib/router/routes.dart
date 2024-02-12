@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:local_mining_supplier/view/home/home.dart';
 import 'package:local_mining_supplier/view/profile/profile.dart';
 import 'package:local_mining_supplier/view/profile/supplier_profile.dart';
+import 'package:local_mining_supplier/view/searchpage/searchpage.dart';
 import 'package:local_mining_supplier/view/sign_up/sign_up.dart';
 import 'package:local_mining_supplier/view/splash/splash.dart';
 
@@ -17,6 +18,7 @@ class AppRoutes {
   static const signUpScreen = "signup";
   static const userProfileScreen = "userprofile";
   static const supplierProfileScreen = "supplier";
+  static const searchpage = "searchpage";
 }
 
 class AppPaths {
@@ -26,6 +28,7 @@ class AppPaths {
   static const signUpPath = "/signup";
   static const userProfilePath = "/userprofile";
   static const supplierProfilePath = "/supplier";
+  static const searchPath = "/searchpage";
 }
 
 class MyRouter {
@@ -65,6 +68,13 @@ class MyRouter {
           path: AppPaths.loginPath,
           pageBuilder: (context, state) {
             return MaterialPage(child: LoginScreen());
+          },
+        ),
+        GoRoute(
+          name: AppRoutes.searchpage,
+          path: AppPaths.searchPath,
+          pageBuilder: (context, state) {
+            return MaterialPage(child:UserSearchPage());
           },
         ),
         GoRoute(

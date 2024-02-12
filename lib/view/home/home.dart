@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:local_mining_supplier/constants/constants.dart';
+import 'package:local_mining_supplier/router/routes.dart';
 import 'package:local_mining_supplier/view/home/widgets/information_with_icon.dart';
 import 'package:local_mining_supplier/view/home/widgets/search_widget.dart';
 import 'package:sizer/sizer.dart';
@@ -27,7 +29,11 @@ class HomeScreen extends StatelessWidget {
                 Positioned(
                     top: 10.sp,
                     left: 10.sp,
-                    child: rowOfSearchWithTextField(context)),
+                    child: InkWell(
+                        onTap: () {
+                          GoRouter.of(context).push(AppRoutes.searchpage);
+                        },
+                        child: rowOfSearchWithTextField(context))),
                 Positioned(
                     bottom: 30.sp,
                     left: 25.sp,
