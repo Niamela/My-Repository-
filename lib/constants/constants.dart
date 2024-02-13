@@ -63,30 +63,30 @@ Widget topMenuBar(context) {
             ),
           ),
         ),
-        GoRouter.of(context).location == AppPaths.homepath
-            ? Row(
-                children: List.generate(menuNames.length, (index) {
-                  return InkWell(
-                      hoverColor: Colors.blueGrey,
-                      onTap: () {
-                        if (index == 0) {
-                          GoRouter.of(context)
-                              .push(AppPaths.supplierProfilePath);
-                        }
-                      },
-                      child: Container(
-                          padding: EdgeInsets.only(
-                              left: 10.sp,
-                              right: 10.sp,
-                              top: 5.sp,
-                              bottom: 5.sp),
-                          child: Text(
-                            menuNames[index],
-                            style: TextStyle(fontSize: 5.sp),
-                          )));
-                }),
-              )
-            : SizedBox(),
+        // GoRouter.of(context).location == AppPaths.homepath
+        //     ? Row(
+        //         children: List.generate(menuNames.length, (index) {
+        //           return InkWell(
+        //               hoverColor: Colors.blueGrey,
+        //               onTap: () {
+        //                 if (index == 0) {
+        //                   GoRouter.of(context)
+        //                       .push(AppPaths.supplierProfilePath);
+        //                 }
+        //               },
+        //               child: Container(
+        //                   padding: EdgeInsets.only(
+        //                       left: 10.sp,
+        //                       right: 10.sp,
+        //                       top: 5.sp,
+        //                       bottom: 5.sp),
+        //                   child: Text(
+        //                     menuNames[index],
+        //                     style: TextStyle(fontSize: 5.sp),
+        //                   )));
+        //         }),
+        //       )
+        //     : SizedBox(),
         FirebaseAuth.instance.currentUser != null
             ? Row(
                 children: [

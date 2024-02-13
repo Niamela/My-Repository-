@@ -41,6 +41,7 @@ class UserModel {
       'address': address,
       'about_company': about_company,
       'services': services,
+      'websites': websites,
       "displayPicture": displayPicture,
     };
   }
