@@ -73,15 +73,6 @@ class MyApp extends StatelessWidget {
             routeInformationProvider: router.routeInformationProvider,
             routeInformationParser: router.routeInformationParser,
             title: 'Local Mining Supplier',
-            // localeResolutionCallback: (Locale? userLocale, supportedLocales) {
-            //   for (var locale in supportedLocales) {
-            //     if (locale.languageCode == userLocale!.languageCode &&
-            //         locale.countryCode == userLocale.countryCode) {
-            //       return userLocale;
-            //     }
-            //   }
-            //   return supportedLocales.first;
-            // },
             localizationsDelegates: [
               GlobalMaterialLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
