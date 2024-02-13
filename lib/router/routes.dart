@@ -74,7 +74,8 @@ class MyRouter {
           name: AppRoutes.searchpage,
           path: AppPaths.searchPath,
           pageBuilder: (context, state) {
-            return MaterialPage(child:UserSearchPage());
+              final query = state.queryParams['query'];
+            return MaterialPage(child:UserSearchPage(searchtxt: query,));
           },
         ),
         GoRoute(

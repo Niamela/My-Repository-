@@ -69,7 +69,12 @@ Widget rowOfSearchWithTextField(context) {
                     list2.add(value);
                   }
                 }
+              
               },
+              // onSubmitted: (value){
+              //     GoRouter.of(context).push(
+              //       '${AppPaths.searchPath}?query=${value}}');
+              // },
               decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: "Search",

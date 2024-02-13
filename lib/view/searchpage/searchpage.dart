@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:local_mining_supplier/constants/constants.dart';
 
 class UserModel {
   String? name;
@@ -31,6 +32,9 @@ class UserModel {
 }
 
 class UserSearchPage extends StatefulWidget {
+  final String? searchtxt;
+
+  const UserSearchPage({super.key, required this.searchtxt});
   @override
   _UserSearchPageState createState() => _UserSearchPageState();
 }
@@ -39,13 +43,15 @@ class _UserSearchPageState extends State<UserSearchPage> {
   TextEditingController _searchController = TextEditingController();
   List<UserModel> searchResults = [];
   List<String> allAddresses = [];
-  
+
   String? address;
 
   @override
   void initState() {
     super.initState();
     _fetchAllAddresses();
+    _searchUsers(widget.searchtxt!, '');
+    _searchController.text = widget.searchtxt!;
   }
 
   void _fetchAllAddresses() {
@@ -67,80 +73,79 @@ class _UserSearchPageState extends State<UserSearchPage> {
     });
   }
 
-void _searchUsers(String searchText, String selectedAddress) {
-  searchResults.clear();
-  if(selectedAddress==''){
-    FirebaseFirestore.instance
-      .collection('users')
-      .where('name', isEqualTo: searchText)
-      .get()
-      .then((QuerySnapshot querySnapshot) {
-    setState(() {
-      querySnapshot.docs.forEach((doc) {
-        Map<String, dynamic> userData = doc.data() as Map<String, dynamic>;
-        UserModel user = UserModel.fromMap(userData);
-        // Filter the results based on the search text
-        if (user.name!.toLowerCase().contains(searchText.toLowerCase())) {
-          searchResults.add(user);
-        }
+  void _searchUsers(String searchText, String selectedAddress) {
+    searchResults.clear();
+    if (selectedAddress == '') {
+      FirebaseFirestore.instance
+          .collection('users')
+          .where('name', isGreaterThanOrEqualTo: searchText)
+          .get()
+          .then((QuerySnapshot querySnapshot) {
+        setState(() {
+          querySnapshot.docs.forEach((doc) {
+            Map<String, dynamic> userData = doc.data() as Map<String, dynamic>;
+            UserModel user = UserModel.fromMap(userData);
+            // Filter the results based on the search text
+            if (user.name!.toLowerCase().contains(searchText.toLowerCase())) {
+              searchResults.add(user);
+            }
+          });
+        });
+      }).catchError((error) {
+        print("Error searching users: $error");
       });
-    });
-  }).catchError((error) {
-    print("Error searching users: $error");
-  });
-  if(searchResults.isEmpty)
-  {FirebaseFirestore.instance
-      .collection('users')
-      .where('services', arrayContains: searchText)
-      .get()
-      .then((QuerySnapshot querySnapshot) {
-    setState(() {
-      querySnapshot.docs.forEach((doc) {
-        Map<String, dynamic> userData = doc.data() as Map<String, dynamic>;
-        UserModel user = UserModel.fromMap(userData);
-        // Filter the results based on the search text
-       
-          searchResults.add(user);
-        
+      if (searchResults.isEmpty) {
+        FirebaseFirestore.instance
+            .collection('users')
+            .where('services', arrayContains: searchText)
+            .get()
+            .then((QuerySnapshot querySnapshot) {
+          setState(() {
+            querySnapshot.docs.forEach((doc) {
+              Map<String, dynamic> userData =
+                  doc.data() as Map<String, dynamic>;
+              UserModel user = UserModel.fromMap(userData);
+              // Filter the results based on the search text
+
+              searchResults.add(user);
+            });
+          });
+        }).catchError((error) {
+          print("Error searching users: $error");
+        });
+      }
+    } else {
+      FirebaseFirestore.instance
+          .collection('users')
+          .where('address', isEqualTo: selectedAddress)
+          .get()
+          .then((QuerySnapshot querySnapshot) {
+        setState(() {
+          querySnapshot.docs.forEach((doc) {
+            Map<String, dynamic> userData = doc.data() as Map<String, dynamic>;
+            UserModel user = UserModel.fromMap(userData);
+            // Filter the results based on the search text
+            if (user.name!.toLowerCase().contains(searchText.toLowerCase())) {
+              searchResults.add(user);
+            }
+            List<String> lowercaseServices =
+                user.services!.map((service) => service.toLowerCase()).toList();
+            if (lowercaseServices.contains(searchText.toLowerCase())) {
+              searchResults.add(user);
+            }
+          });
+        });
+      }).catchError((error) {
+        print("Error searching users: $error");
       });
-    });
-  }).catchError((error) {
-    print("Error searching users: $error");
-  });}
+    }
   }
-  else
-  {FirebaseFirestore.instance
-      .collection('users')
-      .where('address', isEqualTo: selectedAddress)
-      .get()
-      .then((QuerySnapshot querySnapshot) {
-    setState(() {
-      querySnapshot.docs.forEach((doc) {
-        Map<String, dynamic> userData = doc.data() as Map<String, dynamic>;
-        UserModel user = UserModel.fromMap(userData);
-        // Filter the results based on the search text
-        if (user.name!.toLowerCase().contains(searchText.toLowerCase())) {
-          searchResults.add(user);
-        }
-        List<String> lowercaseServices = user.services!.map((service) => service.toLowerCase()).toList();
-        if (lowercaseServices.contains(searchText.toLowerCase())) {
-          searchResults.add(user);
-        }
-      });
-    });
-  }).catchError((error) {
-    print("Error searching users: $error");
-  });}
-}
-
-
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('User Search'),
+        title: topMenuBar(context),
       ),
       body: Column(
         children: [
@@ -152,7 +157,7 @@ void _searchUsers(String searchText, String selectedAddress) {
                   value: null,
                   onChanged: (selectedAddress) {
                     _searchUsers(_searchController.text, selectedAddress ?? '');
-                    address=selectedAddress;
+                    address = selectedAddress;
                   },
                   items: allAddresses.map((address) {
                     return DropdownMenuItem<String>(
@@ -168,9 +173,9 @@ void _searchUsers(String searchText, String selectedAddress) {
                 SizedBox(height: 16),
                 TextField(
                   controller: _searchController,
-                 onChanged: (value) {
-  _searchUsers(value, address??'');
-},
+                  onChanged: (value) {
+                    _searchUsers(value, address ?? '');
+                  },
                   decoration: InputDecoration(
                     labelText: 'Search',
                     border: OutlineInputBorder(),
@@ -190,12 +195,17 @@ void _searchUsers(String searchText, String selectedAddress) {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         _buildFieldText('Email', searchResults[index].email),
-                        _buildFieldText('Mobile Number', searchResults[index].mobileNumber),
-                        _buildFieldText('Address', searchResults[index].address),
-                        _buildFieldText('About Company', searchResults[index].about_company),
-                        _buildFieldText('Services', searchResults[index].services != null
-                            ? searchResults[index].services!.join(', ')
-                            : 'N/A'),
+                        _buildFieldText(
+                            'Mobile Number', searchResults[index].mobileNumber),
+                        _buildFieldText(
+                            'Address', searchResults[index].address),
+                        _buildFieldText('About Company',
+                            searchResults[index].about_company),
+                        _buildFieldText(
+                            'Services',
+                            searchResults[index].services != null
+                                ? searchResults[index].services!.join(', ')
+                                : 'N/A'),
                       ],
                     ),
                   ),
@@ -218,4 +228,3 @@ void _searchUsers(String searchText, String selectedAddress) {
     );
   }
 }
-
