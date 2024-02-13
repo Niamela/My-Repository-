@@ -28,7 +28,7 @@ class AppPaths {
   static const signUpPath = "/signup";
   static const userProfilePath = "/userprofile";
   static const supplierProfilePath = "/supplier";
-  static const searchPath = "/searchpage";
+  static const searchPath = "/search";
 }
 
 class MyRouter {
@@ -74,8 +74,11 @@ class MyRouter {
           name: AppRoutes.searchpage,
           path: AppPaths.searchPath,
           pageBuilder: (context, state) {
-              final query = state.queryParams['query'];
-            return MaterialPage(child:UserSearchPage(searchtxt: query,));
+            final query = state.queryParams['query'];
+            return MaterialPage(
+                child: UserSearchPage(
+              searchtxt: "",
+            ));
           },
         ),
         GoRoute(

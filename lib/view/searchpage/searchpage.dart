@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:local_mining_supplier/constants/constants.dart';
 
 class UserModel {
@@ -32,9 +32,10 @@ class UserModel {
 }
 
 class UserSearchPage extends StatefulWidget {
-  final String? searchtxt;
+  String searchtxt;
 
-  const UserSearchPage({super.key, required this.searchtxt});
+  UserSearchPage({super.key, required this.searchtxt});
+
   @override
   _UserSearchPageState createState() => _UserSearchPageState();
 }
@@ -190,17 +191,20 @@ class _UserSearchPageState extends State<UserSearchPage> {
               itemBuilder: (context, index) {
                 return Card(
                   child: ListTile(
-                    title: Text(searchResults[index].name ?? ''),
+                    title: Text(
+                      searchResults[index].name ?? '',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: mainColor),
+                    ),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        _buildFieldText('Email', searchResults[index].email),
-                        _buildFieldText(
-                            'Mobile Number', searchResults[index].mobileNumber),
+                        // _buildFieldText('Email', searchResults[index].email),
+
                         _buildFieldText(
                             'Address', searchResults[index].address),
-                        _buildFieldText('About Company',
-                            searchResults[index].about_company),
+                        //  _buildFieldText('About Company',
+                        //     searchResults[index].about_company),
                         _buildFieldText(
                             'Services',
                             searchResults[index].services != null
@@ -221,9 +225,17 @@ class _UserSearchPageState extends State<UserSearchPage> {
   Widget _buildFieldText(String fieldName, String? value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
-      child: Text(
-        '$fieldName: ${value ?? 'N/A'}',
-        style: TextStyle(fontWeight: FontWeight.bold),
+      child: Row(
+        children: [
+          Text(
+            '$fieldName: ',
+            style: TextStyle(fontWeight: FontWeight.bold, color: mainColor),
+          ),
+          Text(
+            ' ${value ?? 'N/A'}',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ],
       ),
     );
   }
