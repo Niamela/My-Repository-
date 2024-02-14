@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:local_mining_supplier/flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:local_mining_supplier/provider/locale_provider.dart';
 import 'package:local_mining_supplier/router/login_state_check.dart';
 import 'package:local_mining_supplier/router/routes.dart';
 import 'package:provider/provider.dart';
@@ -68,28 +70,29 @@ class MyApp extends StatelessWidget {
         ],
         child: Sizer(builder: (context, orientation, deviceType) {
           final router = Provider.of<MyRouter>(context, listen: false).routes;
-          return GetMaterialApp.router(
-            routerDelegate: router.routerDelegate,
-            routeInformationProvider: router.routeInformationProvider,
-            routeInformationParser: router.routeInformationParser,
-            title: 'Local Mining Supplier',
-            localizationsDelegates: [
-              GlobalMaterialLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              // LocalizationHelper.delegate
-            ],
-            supportedLocales: [
-              const Locale('en', 'US'), // English
-              const Locale('fr', 'FR'), // French
-            ],
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-                primarySwatch: goldenSwatch,
-                primaryColor: Colors.white,
-                textTheme:
-                    TextTheme(subtitle1: TextStyle(color: Color(0xFFA67C00)))),
-          );
+         return ChangeNotifierProvider(
+              create: (context) => LocaleProvider(),
+              builder: (context, child) {
+                return Consumer<LocaleProvider>(
+                    builder: (context, provider, child) {
+                  return GetMaterialApp.router(
+                    routerDelegate: router.routerDelegate,
+                    routeInformationProvider: router.routeInformationProvider,
+                    routeInformationParser: router.routeInformationParser,
+                    title: 'Local Mining Supplier',
+                    localizationsDelegates:
+                        AppLocalizations.localizationsDelegates,
+                    supportedLocales: AppLocalizations.supportedLocales,
+                    locale:provider.locale,
+                    debugShowCheckedModeBanner: false,
+                    theme: ThemeData(
+                        primarySwatch: goldenSwatch,
+                        primaryColor: Colors.white,
+                        textTheme: TextTheme(
+                            subtitle1: TextStyle(color: Color(0xFFA67C00)))),
+                  );
+                });
+              });
         }),
       ),
     );

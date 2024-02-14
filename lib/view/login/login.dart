@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:local_mining_supplier/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../constants/constants.dart';
@@ -32,7 +33,7 @@ class LoginScreen extends StatelessWidget {
             child: Column(
               children: [
                 customTextField(
-                    hintText: "Email",
+                    hintText:AppLocalizations.of(context)!.email,
                     controller: loginController.emailController.value),
                 SizedBox(height: 10.sp),
                 Obx(() {
@@ -55,7 +56,7 @@ class LoginScreen extends StatelessWidget {
                           onPressed: () {
                             obscureText.value = !obscureText.value;
                           }),
-                      labelText: "Password",
+                      labelText:AppLocalizations.of(context)!.password,
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: HexColor("#FFB8860B"))),
                       enabledBorder: OutlineInputBorder(),
@@ -78,7 +79,7 @@ class LoginScreen extends StatelessWidget {
                               color: Colors.white,
                             )
                           : Text(
-                              'Login',
+                              AppLocalizations.of(context)!.login,
                               style: TextStyle(fontSize: 6.sp),
                             ),
                     );
@@ -88,7 +89,7 @@ class LoginScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Dont have an account?"),
+                    Text("${AppLocalizations.of(context)!.dontHaveAnAccount}?"),
                     TextButton(
                         onPressed: () {
                           GoRouter.of(context).push(AppPaths.signUpPath);
@@ -96,7 +97,7 @@ class LoginScreen extends StatelessWidget {
                         style: TextButton.styleFrom(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(7.5.sp))),
-                        child: Text("Sign up"))
+                        child: Text(AppLocalizations.of(context)!.signUp))
                   ],
                 )
               ],

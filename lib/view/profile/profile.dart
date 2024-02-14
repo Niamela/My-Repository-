@@ -8,14 +8,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:local_mining_supplier/constants/constants.dart';
+import 'package:local_mining_supplier/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../model/usermodel.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   ProfileScreen({super.key});
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   String? businessLogo =
       "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/management-business-logo-design-template-029c8183c7ec4ff641c3853170a304ed_screen.jpg?ts=1584223008";
 
@@ -40,9 +46,9 @@ class ProfileScreen extends StatelessWidget {
                         width: 100.w,
                         child: Center(child: CircularProgressIndicator()));
                   } else if (snapshot.hasError) {
-                    return Center(child: Text('Error: ${snapshot.error}'));
+                    return Center(child: Text('${AppLocalizations.of(context)!..error}: ${snapshot.error}'));
                   } else if (!snapshot.hasData) {
-                    return Center(child: Text('No data available'));
+                    return Center(child: Text(AppLocalizations.of(context)!.noDataAvailable));
                   }
                   final data = snapshot.data!.data()!;
                   UserModel user = UserModel(
@@ -80,7 +86,7 @@ class ProfileScreen extends StatelessWidget {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  pickProfilePicture();
+                                  pickProfilePicture(context);
                                 },
                                 onHover: (value) {
                                   isHovered.value = value;
@@ -109,7 +115,7 @@ class ProfileScreen extends StatelessWidget {
                                               maxRadius: 12.sp,
                                               backgroundColor: Colors.black38,
                                               child: Text(
-                                                "Change Profile Picture",
+                                                AppLocalizations.of(context)!.changeProfilePicture,
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     color: Colors.white,
@@ -183,6 +189,7 @@ class ProfileScreen extends StatelessWidget {
                                                       ElevatedButton(
                                                           onPressed: () {
                                                             personalDataUpdate(
+                                                              context:context,
                                                               name: personalDataControllers[
                                                                           0]
                                                                       .value
@@ -230,13 +237,13 @@ class ProfileScreen extends StatelessWidget {
                                                                 context);
                                                           },
                                                           child:
-                                                              Text("Update")),
+                                                              Text(AppLocalizations.of(context)!.update)),
                                                       ElevatedButton(
                                                           onPressed: () {
                                                             Navigator.pop(
                                                                 context);
                                                           },
-                                                          child: Text("Cancel"))
+                                                          child: Text(AppLocalizations.of(context)!.cancel))
                                                     ],
                                                     content: Column(
                                                       mainAxisSize:
@@ -247,42 +254,43 @@ class ProfileScreen extends StatelessWidget {
                                                       crossAxisAlignment:
                                                           CrossAxisAlignment
                                                               .center,
-                                                      children: List.generate(4,
-                                                          (index) {
-                                                        return Padding(
-                                                          padding:
-                                                              EdgeInsets.all(
-                                                                  2.sp),
+                                                      children: [
+                                                           
+                                                        Padding(padding:EdgeInsets.all(2.sp),
                                                           child: TextField(
-                                                            controller:
-                                                                personalDataControllers[
-                                                                        index]
-                                                                    .value,
-                                                            cursorColor: Color(
-                                                                0xFFDAA520),
-                                                            decoration: InputDecoration(
-                                                                labelText:
-                                                                    hintText[
-                                                                        index],
-                                                                enabledBorder: OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                            color: HexColor(
-                                                                                "#FFB8860B")),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(5
-                                                                            .sp)),
-                                                                focusedBorder: OutlineInputBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(5
-                                                                            .sp),
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                            color:
-                                                                                HexColor("#FFB8860B")))),
-                                                          ),
-                                                        );
-                                                      }),
+                                                            controller:personalDataControllers[0].value,
+                                                            cursorColor: Color(0xFFDAA520),
+                                                            decoration: InputDecoration(labelText:AppLocalizations.of(context)!.name,
+                                                                enabledBorder: OutlineInputBorder(borderSide:BorderSide(color: HexColor("#FFB8860B")),
+                                                                    borderRadius:BorderRadius.circular(5.sp)),
+                                                                focusedBorder: OutlineInputBorder(borderRadius:BorderRadius.circular(5.sp),
+                                                                    borderSide:BorderSide(color:HexColor("#FFB8860B")))),),), Padding(padding:EdgeInsets.all(2.sp),
+                                                          child: TextField(
+                                                            controller:personalDataControllers[1].value,
+                                                            cursorColor: Color(0xFFDAA520),
+                                                            decoration: InputDecoration(labelText:AppLocalizations.of(context)!.email,
+                                                                enabledBorder: OutlineInputBorder(borderSide:BorderSide(color: HexColor("#FFB8860B")),
+                                                                    borderRadius:BorderRadius.circular(5.sp)),
+                                                                focusedBorder: OutlineInputBorder(borderRadius:BorderRadius.circular(5.sp),
+                                                                    borderSide:BorderSide(color:HexColor("#FFB8860B")))),),), Padding(padding:EdgeInsets.all(2.sp),
+                                                          child: TextField(
+                                                            controller:personalDataControllers[2].value,
+                                                            cursorColor: Color(0xFFDAA520),
+                                                            decoration: InputDecoration(labelText:"Mobile number",
+                                                                enabledBorder: OutlineInputBorder(borderSide:BorderSide(color: HexColor("#FFB8860B")),
+                                                                    borderRadius:BorderRadius.circular(5.sp)),
+                                                                focusedBorder: OutlineInputBorder(borderRadius:BorderRadius.circular(5.sp),
+                                                                    borderSide:BorderSide(color:HexColor("#FFB8860B")))),),), Padding(padding:EdgeInsets.all(2.sp),
+                                                          child: TextField(
+                                                            controller:personalDataControllers[3].value,
+                                                            cursorColor: Color(0xFFDAA520),
+                                                            decoration: InputDecoration(labelText:AppLocalizations.of(context)!.address,
+                                                                enabledBorder: OutlineInputBorder(borderSide:BorderSide(color: HexColor("#FFB8860B")),
+                                                                    borderRadius:BorderRadius.circular(5.sp)),
+                                                                focusedBorder: OutlineInputBorder(borderRadius:BorderRadius.circular(5.sp),
+                                                                    borderSide:BorderSide(color:HexColor("#FFB8860B")))),),),
+                                                                    ]
+                                                     
                                                     ),
                                                   );
                                                 });
@@ -308,7 +316,7 @@ class ProfileScreen extends StatelessWidget {
                                           MainAxisAlignment.start,
                                       children: [
                                         Text(
-                                          "Websites",
+                                         AppLocalizations.of(context)!.websites,
                                           style: TextStyle(
                                               fontSize: 5.sp,
                                               fontWeight: FontWeight.bold),
@@ -340,7 +348,7 @@ class ProfileScreen extends StatelessWidget {
                                                           onPressed: () {
                                                             websiteUpdate(
                                                                 websites: websites
-                                                                    .toList());
+                                                                    .toList(),context:context);
                                                             websiteController
                                                                 .value
                                                                 .clear();
@@ -348,13 +356,13 @@ class ProfileScreen extends StatelessWidget {
                                                                 context);
                                                           },
                                                           child:
-                                                              Text("Update")),
+                                                              Text(AppLocalizations.of(context)!.update)),
                                                       ElevatedButton(
                                                           onPressed: () {
                                                             Navigator.pop(
                                                                 context);
                                                           },
-                                                          child: Text("Cancel"))
+                                                          child: Text(AppLocalizations.of(context)!.cancel))
                                                     ],
                                                     content: SizedBox(
                                                       width: 50.w,
@@ -402,7 +410,7 @@ class ProfileScreen extends StatelessWidget {
                                                                               .clear();
                                                                         } else {
                                                                           toast(
-                                                                              msg: "You can add upto 3 websites only.");
+                                                                              msg:  '${AppLocalizations.of(context)!.youCanAddUpTo3WebsitesOnly}.');
                                                                         }
                                                                       },
                                                                       decoration: InputDecoration(
@@ -412,12 +420,12 @@ class ProfileScreen extends StatelessWidget {
                                                                                   websites.add(websiteController.value.text);
                                                                                   websiteController.value.clear();
                                                                                 } else {
-                                                                                  toast(msg: "You can add upto 3 websites only.");
+                                                                                  toast(msg:  '${AppLocalizations.of(context)!.youCanAddUpTo3WebsitesOnly}.');
                                                                                 }
                                                                               },
                                                                               splashRadius: 4.sp,
                                                                               icon: Icon(Icons.add)),
-                                                                          labelText: "website url",
+                                                                          labelText:  '${AppLocalizations.of(context)!.websiteUrl}',
                                                                           enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: HexColor("#FFB8860B")), borderRadius: BorderRadius.circular(5.sp)),
                                                                           focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(5.sp), borderSide: BorderSide(color: HexColor("#FFB8860B")))),
                                                                     ),
@@ -519,7 +527,7 @@ class ProfileScreen extends StatelessWidget {
                                               );
                                             }),
                                           )
-                                        : Text("Please add websites"),
+                                        : Text(AppLocalizations.of(context)!.pleaseAddWebsites),
                                   ],
                                 ),
                               ),
@@ -550,6 +558,7 @@ class ProfileScreen extends StatelessWidget {
                                               ElevatedButton(
                                                   onPressed: () {
                                                     companyUpdate(
+                                                      context:context,
                                                       aboutComapny:
                                                           companyUpdateControllers[
                                                                       0]
@@ -567,12 +576,12 @@ class ProfileScreen extends StatelessWidget {
                                                     );
                                                     Navigator.pop(context);
                                                   },
-                                                  child: Text("Update")),
+                                                  child: Text(AppLocalizations.of(context)!.update)),
                                               ElevatedButton(
                                                   onPressed: () {
                                                     Navigator.pop(context);
                                                   },
-                                                  child: Text("Cancel"))
+                                                  child: Text(AppLocalizations.of(context)!.cancel))
                                             ],
                                             content: SizedBox(
                                               width: 50.w,
@@ -590,75 +599,61 @@ class ProfileScreen extends StatelessWidget {
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment
                                                                 .center,
-                                                        children: List.generate(
-                                                            2, (index) {
-                                                          return Padding(
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    2.sp),
-                                                            child: TextField(
-                                                              maxLines:
-                                                                  index == 0
-                                                                      ? 4
-                                                                      : 1,
-                                                              controller:
-                                                                  companyUpdateControllers[
-                                                                          index]
-                                                                      .value,
-                                                              cursorColor: Color(
-                                                                  0xFFDAA520),
-                                                              onSubmitted:
-                                                                  (value) {
-                                                                if (companyUpdateControllers[
-                                                                        1]
-                                                                    .value
-                                                                    .text
-                                                                    .isNotEmpty) {
-                                                                  addedServices.add(
-                                                                      companyUpdateControllers[
-                                                                              1]
-                                                                          .value
-                                                                          .text);
-                                                                  companyUpdateControllers[
-                                                                          1]
-                                                                      .value
-                                                                      .clear();
-                                                                }
-                                                              },
-                                                              decoration:
-                                                                  InputDecoration(
-                                                                      suffixIcon: index ==
-                                                                              1
-                                                                          ? IconButton(
-                                                                              onPressed:
-                                                                                  () {
-                                                                                if (companyUpdateControllers[1].value.text.isNotEmpty) {
-                                                                                  addedServices.add(companyUpdateControllers[1].value.text);
-                                                                                  companyUpdateControllers[1].value.clear();
-                                                                                }
-                                                                              },
-                                                                              splashRadius: 4
-                                                                                  .sp,
-                                                                              icon: Icon(Icons
-                                                                                  .add))
-                                                                          : SizedBox(),
-                                                                      labelText:
-                                                                          hintText2[
-                                                                              index],
-                                                                      enabledBorder: OutlineInputBorder(
-                                                                          borderSide: BorderSide(
-                                                                              color: HexColor(
-                                                                                  "#FFB8860B")),
-                                                                          borderRadius: BorderRadius.circular(5
-                                                                              .sp)),
-                                                                      focusedBorder: OutlineInputBorder(
-                                                                          borderRadius: BorderRadius.circular(5
-                                                                              .sp),
-                                                                          borderSide:
-                                                                              BorderSide(color: HexColor("#FFB8860B")))),
-                                                            ),
-                                                          );
-                                                        }),
+                                                        children:[Padding(
+  padding: EdgeInsets.all(2.sp),
+  child: TextField(
+    maxLines: 4,
+    controller: companyUpdateControllers[0].value,
+    cursorColor: Color(0xFFDAA520),
+    decoration: InputDecoration(
+      labelText: AppLocalizations.of(context)!.aboutCompany,
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: HexColor("#FFB8860B")),
+        borderRadius: BorderRadius.circular(5.sp),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(5.sp),
+        borderSide: BorderSide(color: HexColor("#FFB8860B")),
+      ),
+    ),
+  ),
+),
+Padding(
+  padding: EdgeInsets.all(2.sp),
+  child: TextField(
+    maxLines: 1,
+    controller: companyUpdateControllers[1].value,
+    cursorColor: Color(0xFFDAA520),
+    onSubmitted: (value) {
+      if (companyUpdateControllers[1].value.text.isNotEmpty) {
+        addedServices.add(companyUpdateControllers[1].value.text);
+        companyUpdateControllers[1].value.clear();
+      }
+    },
+    decoration: InputDecoration(
+      suffixIcon: IconButton(
+        onPressed: () {
+          if (companyUpdateControllers[1].value.text.isNotEmpty) {
+            addedServices.add(companyUpdateControllers[1].value.text);
+            companyUpdateControllers[1].value.clear();
+          }
+        },
+        splashRadius: 4.sp,
+        icon: Icon(Icons.add),
+      ),
+      labelText: AppLocalizations.of(context)!.service,
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: HexColor("#FFB8860B")),
+        borderRadius: BorderRadius.circular(5.sp),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(5.sp),
+        borderSide: BorderSide(color: HexColor("#FFB8860B")),
+      ),
+    ),
+  ),
+),
+                                                    ]
                                                       ),
                                                       SizedBox(
                                                         height: 2.sp,
@@ -740,7 +735,7 @@ class ProfileScreen extends StatelessWidget {
                                           );
                                         });
                                   },
-                                  child: Text("Edit company info"))
+                                  child: Text(AppLocalizations.of(context)!.editCompanyInfo))
                             ],
                           ),
                         ),
@@ -777,7 +772,7 @@ class ProfileScreen extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Services:",
+                                        "${AppLocalizations.of(context)!.services}:",
                                         style: TextStyle(
                                             fontSize: 8.sp,
                                             fontWeight: FontWeight.bold,
@@ -809,7 +804,7 @@ class ProfileScreen extends StatelessWidget {
                                                   );
                                                 }),
                                               )
-                                            : Text("Please add services.  "),
+                                            : Text(AppLocalizations.of(context)!.pleaseAddServices),
                                       ),
                                     ],
                                   ),
@@ -823,7 +818,7 @@ class ProfileScreen extends StatelessWidget {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Text(
-                                      "Products",
+                                    AppLocalizations.of(context)!.products,
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold,
@@ -854,19 +849,20 @@ class ProfileScreen extends StatelessWidget {
                                                     ElevatedButton(
                                                         onPressed: () {
                                                           productsUpdate(
+                                                            context: context,
                                                               products:
                                                                   addedProducts
                                                                       .toList());
                                                           Navigator.pop(
                                                               context);
                                                         },
-                                                        child: Text("Update")),
+                                                        child: Text(AppLocalizations.of(context)!.update)),
                                                     ElevatedButton(
                                                         onPressed: () {
                                                           Navigator.pop(
                                                               context);
                                                         },
-                                                        child: Text("Cancel"))
+                                                        child: Text(AppLocalizations.of(context)!.cancel))
                                                   ],
                                                   content: SizedBox(
                                                     width: 50.w,
@@ -887,66 +883,69 @@ class ProfileScreen extends StatelessWidget {
                                                                   CrossAxisAlignment
                                                                       .center,
                                                               children:
-                                                                  List.generate(
-                                                                      2,
-                                                                      (index) {
-                                                                return Padding(
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .all(2
-                                                                              .sp),
-                                                                  child:
-                                                                      TextField(
-                                                                    controller:
-                                                                        productsControllers[index]
-                                                                            .value,
-                                                                    cursorColor:
-                                                                        Color(
-                                                                            0xFFDAA520),
-                                                                    onSubmitted:
-                                                                        (value) {
-                                                                      if (productsControllers[1]
-                                                                              .value
-                                                                              .text
-                                                                              .isNotEmpty &&
-                                                                          productsControllers[0]
-                                                                              .value
-                                                                              .text
-                                                                              .isNotEmpty) {
-                                                                        Map map =
-                                                                            {
-                                                                          "name": productsControllers[0]
-                                                                              .value
-                                                                              .text,
-                                                                          "image": productsControllers[1]
-                                                                              .value
-                                                                              .text,
-                                                                        };
-                                                                        addedProducts
-                                                                            .add(map);
-                                                                      }
-                                                                    },
-                                                                    decoration: InputDecoration(
-                                                                        suffixIcon: index == 1
-                                                                            ? IconButton(
-                                                                                onPressed: () {
-                                                                                  if (productsControllers[1].value.text.isNotEmpty && productsControllers[0].value.text.isNotEmpty) {
-                                                                                    Map map = {
-                                                                                      "name": productsControllers[0].value.text,
-                                                                                      "image": productsControllers[1].value.text,
-                                                                                    };
-                                                                                    addedProducts.add(map);
-                                                                                  }
-                                                                                },
-                                                                                splashRadius: 4.sp,
-                                                                                icon: Icon(Icons.add))
-                                                                            : SizedBox(),
-                                                                        labelText: hintText3[index],
-                                                                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: HexColor("#FFB8860B")), borderRadius: BorderRadius.circular(5.sp)),
-                                                                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(5.sp), borderSide: BorderSide(color: HexColor("#FFB8860B")))),
-                                                                  ),
-                                                                );
-                                                              }),
+                                                            [
+                                                              Padding(
+  padding: EdgeInsets.all(2.sp),
+  child: TextField(
+    controller: productsControllers[0].value,
+    cursorColor: Color(0xFFDAA520),
+    decoration: InputDecoration(
+      labelText: AppLocalizations.of(context)!.productName,
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: HexColor("#FFB8860B")),
+        borderRadius: BorderRadius.circular(5.sp),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(5.sp),
+        borderSide: BorderSide(color: HexColor("#FFB8860B")),
+      ),
+    ),
+  ),
+),
+Padding(
+  padding: EdgeInsets.all(2.sp),
+  child: TextField(
+    controller: productsControllers[1].value,
+    cursorColor: Color(0xFFDAA520),
+    onSubmitted: (value) {
+      if (productsControllers[1].value.text.isNotEmpty &&
+          productsControllers[0].value.text.isNotEmpty) {
+        Map map = {
+          "name": productsControllers[0].value.text,
+          "image": productsControllers[1].value.text,
+        };
+        addedProducts.add(map);
+      }
+    },
+    decoration: InputDecoration(
+      suffixIcon: IconButton(
+        onPressed: () {
+          if (productsControllers[1].value.text.isNotEmpty &&
+              productsControllers[0].value.text.isNotEmpty) {
+            Map map = {
+              "name": productsControllers[0].value.text,
+              "image": productsControllers[1].value.text,
+            };
+            addedProducts.add(map);
+          }
+        },
+        splashRadius: 4.sp,
+        icon: Icon(Icons.add),
+      ),
+      labelText:AppLocalizations.of(context)!.productImageUrl,
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: HexColor("#FFB8860B")),
+        borderRadius: BorderRadius.circular(5.sp),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(5.sp),
+        borderSide: BorderSide(color: HexColor("#FFB8860B")),
+      ),
+    ),
+  ),
+),
+
+                                                            ]
                                                             ),
                                                             SizedBox(
                                                               height: 2.sp,
@@ -1087,11 +1086,11 @@ class ProfileScreen extends StatelessWidget {
                                       )
                                     : Align(
                                         alignment: Alignment.centerLeft,
-                                        child: Text("Please add products.")),
+                                        child: Text(AppLocalizations.of(context)!.pleaseAddProducts)),
                                 SizedBox(
                                   height: 4.h,
                                 ),
-                                Text("About company",
+                                Text(AppLocalizations.of(context)!.aboutCompany,
                                     style: TextStyle(
                                         fontSize: 8.sp,
                                         color: Colors.black,
@@ -1105,7 +1104,7 @@ class ProfileScreen extends StatelessWidget {
                                             fontSize: 5.sp,
                                             color: Colors.black,
                                             fontWeight: FontWeight.w500))
-                                    : Text("Please add company information"),
+                                    : Text(AppLocalizations.of(context)!.pleaseAddCompanyInformation),
                               ],
                             ),
                           ),
@@ -1125,13 +1124,10 @@ class ProfileScreen extends StatelessWidget {
 
   final personalDataControllers =
       List.generate(4, (index) => TextEditingController().obs);
+
   final websiteController = TextEditingController().obs;
 
-  final hintText = ["Name", "Email", "Mobile number", "Address"];
-  final hintText2 = ["About company", "Service"];
-  final hintText3 = ["Product Name", "Product image url"];
-
-  websiteUpdate({websites}) async {
+  websiteUpdate({websites,context}) async {
     final user = FirebaseAuth.instance.currentUser;
     try {
       await FirebaseFirestore.instance
@@ -1141,14 +1137,14 @@ class ProfileScreen extends StatelessWidget {
         'websites': websites,
       });
       websiteController.value.clear();
-      toast(msg: "Websites updated.");
+      toast(msg: AppLocalizations.of(context)!.websitesUpdated);
     } catch (e) {
       print("productsUpdate : $e");
-      toast(msg: "Could not update the website.");
+      toast(msg: AppLocalizations.of(context)!.couldNotUpdateTheWebsite);
     }
   }
 
-  personalDataUpdate({name, number, email, address}) async {
+  personalDataUpdate({name, number, email, address,context}) async {
     final user = FirebaseAuth.instance.currentUser;
     try {
       await FirebaseFirestore.instance
@@ -1163,10 +1159,10 @@ class ProfileScreen extends StatelessWidget {
       personalDataControllers.forEach((element) {
         element.value.clear();
       });
-      toast(msg: "Data updated successfully.");
+      toast(msg: AppLocalizations.of(context)!.dataUpdatedSuccessfully);
     } catch (e) {
-      print("Error : $e");
-      toast(msg: "Could not update the data.");
+      print("${AppLocalizations.of(context)!.error} : $e");
+      toast(msg: AppLocalizations.of(context)!.dataUpdatedSuccessfully);
     }
   }
 
@@ -1174,10 +1170,12 @@ class ProfileScreen extends StatelessWidget {
       List.generate(2, (index) => TextEditingController().obs);
 
   final addedServices = [].obs;
+
   final addedProducts = [].obs;
+
   final websites = [].obs;
 
-  companyUpdate({services, aboutComapny}) async {
+  companyUpdate({services, aboutComapny,context}) async {
     final user = FirebaseAuth.instance.currentUser;
     try {
       await FirebaseFirestore.instance
@@ -1187,14 +1185,14 @@ class ProfileScreen extends StatelessWidget {
       companyUpdateControllers.forEach((element) {
         element.value.clear();
       });
-      toast(msg: "Details updated successfully.");
+      toast(msg: AppLocalizations.of(context)!.detailsUpdatedSuccessfully);
     } catch (e) {
       print("companyUpdate : $e");
-      toast(msg: "Could not update the details.");
+      toast(msg: AppLocalizations.of(context)!.couldNotUpdateTheDetails);
     }
   }
 
-  productsUpdate({products}) async {
+  productsUpdate({products,context}) async {
     final user = FirebaseAuth.instance.currentUser;
     try {
       await FirebaseFirestore.instance
@@ -1206,19 +1204,20 @@ class ProfileScreen extends StatelessWidget {
       productsControllers.forEach((element) {
         element.value.clear();
       });
-      toast(msg: "Details updated successfully.");
+      toast(msg:AppLocalizations.of(context)!.detailsUpdatedSuccessfully);
     } catch (e) {
       print("productsUpdate : $e");
-      toast(msg: "Could not update the details.");
+      toast(msg: AppLocalizations.of(context)!.couldNotUpdateTheDetails);
     }
   }
 
   final textStyle = TextStyle(fontSize: 4.sp, color: Color(0xFFDAA520));
 
   Rx<Uint8List?> profilePictureBytes = Rx<Uint8List?>(null);
+
   final ppName = ''.obs;
 
-  Future<void> pickProfilePicture() async {
+  Future<void> pickProfilePicture(context) async {
     try {
       FilePickerResult? result =
           await FilePicker.platform.pickFiles(type: FileType.image);
@@ -1227,23 +1226,23 @@ class ProfileScreen extends StatelessWidget {
         // Use `bytes` instead of `path` for web
         profilePictureBytes.value = result.files.single.bytes;
         ppName.value = result.files.first.name;
-        uploadProfilePicture();
+        uploadProfilePicture(context);
       }
     } catch (e) {
-      Get.snackbar('Error', 'Failed to pick a file. $e');
+      Get.snackbar(AppLocalizations.of(context)!.error, '${AppLocalizations.of(context)!.failedToPickAFile}. $e');
     }
   }
 
-  Future<void> uploadProfilePicture() async {
+  Future<void> uploadProfilePicture(context) async {
     try {
       final user = FirebaseAuth.instance.currentUser;
       if (user == null) {
-        Get.snackbar('Error', 'User not authenticated.');
+        Get.snackbar(AppLocalizations.of(context)!.error, AppLocalizations.of(context)!.userNotAuthenticated);
         return;
       }
 
       if (profilePictureBytes.value == null) {
-        Get.snackbar('Error', 'Please select a profile picture to upload.');
+        Get.snackbar(AppLocalizations.of(context)!.error,AppLocalizations.of(context)!.pleaseSelectAProfilePictureToUpload);
         return;
       }
 
@@ -1262,10 +1261,10 @@ class ProfileScreen extends StatelessWidget {
           .update({
         'displayPicture': ppUrl,
       });
-      toast(msg: "Profile picture changed.");
+      toast(msg: AppLocalizations.of(context)!.profilePictureChanged);
     } catch (e) {
       print("uploadProfilePicture $e");
-      toast(msg: "Error: 'Profile picture upload failed.");
+      toast(msg: "${AppLocalizations.of(context)!.error}: ${AppLocalizations.of(context)!.errorProfilePictureUploadFailed}.");
     }
   }
 }

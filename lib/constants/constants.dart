@@ -4,6 +4,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:local_mining_supplier/controllers/login.dart';
+import 'package:local_mining_supplier/flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:local_mining_supplier/provider/locale_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -33,9 +35,9 @@ List menuNames = [
   "About us",
 ];
 
-List loginSignup = [
-  "Login",
-  "Sign up",
+List <String> loginSignup = [
+  "login",
+  "signup",
 ];
 
 Widget topMenuBar(context) {
@@ -139,28 +141,42 @@ Widget topMenuBar(context) {
                 : Padding(
                     padding: EdgeInsets.only(right: 10.sp),
                     child: Row(
-                      children: List.generate(loginSignup.length, (index) {
-                        return Padding(
+                      children: [
+                        Padding(
                           padding: EdgeInsets.only(left: 5.sp),
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.white),
                               onPressed: () {
-                                if (index == 0) {
+                               
                                   GoRouter.of(context).push(AppPaths.loginPath);
-                                } else {
-                                  GoRouter.of(context)
-                                      .push(AppPaths.signUpPath);
-                                }
+                               
                               },
                               child: Text(
-                                loginSignup[index],
+                                AppLocalizations.of(context)!.login,
                                 style: TextStyle(color: mainColor),
                               )),
-                        );
-                      }),
+                        ),
+                          Padding(
+                          padding: EdgeInsets.only(left: 5.sp),
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.white),
+                              onPressed: () {
+                                
+                                  GoRouter.of(context)
+                                      .push(AppPaths.signUpPath);
+                                
+                              },
+                              child: Text(
+                                AppLocalizations.of(context)!.signUp,
+                                style: TextStyle(color: mainColor),
+                              )),
+                        ),
+                      ]
                     ),
-                  )
+                  ),
+      
       ],
     ),
   );

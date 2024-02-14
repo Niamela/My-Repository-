@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:local_mining_supplier/constants/constants.dart';
 import 'package:local_mining_supplier/controllers/sign_up.dart';
+import 'package:local_mining_supplier/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../router/routes.dart';
@@ -29,23 +30,23 @@ class SignUpScreen extends StatelessWidget {
               child: Column(
                 children: [
                   customTextField(
-                      hintText: "Name",
+                      hintText: AppLocalizations.of(context)!.name,
                       controller: signUpController.nameController.value),
                   sizedBox,
                   customTextField(
-                      hintText: "Email",
+                      hintText: AppLocalizations.of(context)!.email,
                       controller: signUpController.emailController.value),
                   sizedBox,
                   customTextField(
-                      hintText: "Mobile number",
+                      hintText:AppLocalizations.of(context)!.mobileNumber,
                       controller: signUpController.mobileController.value),
                   sizedBox,
                   customTextField(
-                      hintText: "Password",
+                      hintText:AppLocalizations.of(context)!.password,
                       controller: signUpController.passwordController.value),
                   sizedBox,
                   customTextField(
-                      hintText: "Confirm Password",
+                      hintText: AppLocalizations.of(context)!.confirmPassword,
                       controller:
                           signUpController.confirmPasswordController.value),
                   sizedBox,
@@ -63,7 +64,7 @@ class SignUpScreen extends StatelessWidget {
                                 color: Colors.white,
                               )
                             : Text(
-                                'Sign up',
+                               AppLocalizations.of(context)!.signUp,
                                 style: TextStyle(fontSize: 6.sp),
                               ),
                       );
@@ -73,7 +74,7 @@ class SignUpScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Already have an account? "),
+                      Text("${AppLocalizations.of(context)!.alreadyHaveAnAccount}? "),
                       TextButton(
                           onPressed: () {
                             GoRouter.of(context).push(AppPaths.loginPath);
@@ -81,7 +82,7 @@ class SignUpScreen extends StatelessWidget {
                           style: TextButton.styleFrom(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(7.5.sp))),
-                          child: Text("Login"))
+                          child: Text(AppLocalizations.of(context)!.login))
                     ],
                   )
                 ],

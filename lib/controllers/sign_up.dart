@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
+import 'package:local_mining_supplier/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:local_mining_supplier/router/routes.dart';
 
 import '../constants/constants.dart';
@@ -29,12 +30,12 @@ class SignupController extends GetxController {
         if (passwordController.value.text !=
             confirmPasswordController.value.text) {
           Fluttertoast.showToast(
-              msg: "Passwords do not match. Please correct and try again.");
+              msg:  '${AppLocalizations.of(context)!.passwordsDoNotMatchPleaseCorrectAndTryAgain}.');
           isLoading(false);
           return;
         } else if (passwordController.value.text.isEmpty ||
             confirmPasswordController.value.text.isEmpty) {
-          toast(msg: "Password/Confirm password cannot be empty.");
+          toast(msg:  '${AppLocalizations.of(context)!.passwordConfirmPasswordCannotBeEmpty}.');
           isLoading(false);
           return;
         }
@@ -60,24 +61,24 @@ class SignupController extends GetxController {
           saveLoginState(context);
           GoRouter.of(context).pushReplacement(AppPaths.homepath);
           isLoading(false);
-          toast(msg: "Account created successfully!");
+          toast(msg:  '${AppLocalizations.of(context)!.accountCreatedSuccessfully}!');
         }
       } else {
         if (nameController.value.text.isEmpty) {
-          toast(msg: "Name cannot be empty");
+          toast(msg:  '${AppLocalizations.of(context)!.nameCannotBeEmpty}');
         }
         if (emailController.value.text.isEmpty) {
-          toast(msg: "Email cannot be empty");
+          toast(msg:  '${AppLocalizations.of(context)!.emailCannotBeEmpty}');
         }
         if (mobileController.value.text.isEmpty) {
-          toast(msg: "Mobile number cannot be empty");
+          toast(msg:  '${AppLocalizations.of(context)!.mobileNumberCannotBeEmpty}');
         }
         isLoading(false);
       }
     } catch (e) {
       print("object signup $e");
       isLoading(false);
-      toast(msg: "Sign up failed. Please try again later. ($e)");
+      toast(msg: " '${AppLocalizations.of(context)!.signUpFailedPleaseTryAgainLater}' ($e)");
     }
   }
 

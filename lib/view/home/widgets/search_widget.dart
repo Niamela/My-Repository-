@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:local_mining_supplier/constants/constants.dart';
+import 'package:local_mining_supplier/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:local_mining_supplier/router/routes.dart';
 import 'package:sizer/sizer.dart';
 
@@ -23,7 +24,7 @@ Widget rowOfSearchWithTextField(context) {
       },
       decoration: InputDecoration(
           border: InputBorder.none,
-          hintText: "Search",
+          hintText: AppLocalizations.of(context)!.search,
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.sp),
               borderSide: BorderSide(color: Colors.white)),
