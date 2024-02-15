@@ -23,10 +23,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get loggedIn => 'Logged in';
 
   @override
-  String get enterEmailAndPasswordToLogin => 'Enter email and password to login';
+  String get enterEmailAndPasswordToLogin =>
+      'Enter email and password to login';
 
   @override
-  String get loginFailedPleaseTryAgainLater => 'Login failed Please try again later';
+  String get loginFailedPleaseTryAgainLater =>
+      'Login failed Please try again later';
 
   @override
   String get loggedOut => 'Logged out';
@@ -35,10 +37,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get logoutFailed => 'Logout failed';
 
   @override
-  String get passwordsDoNotMatchPleaseCorrectAndTryAgain => 'Passwords do not match Please correct and try again';
+  String get passwordsDoNotMatchPleaseCorrectAndTryAgain =>
+      'Passwords do not match Please correct and try again';
 
   @override
-  String get passwordConfirmPasswordCannotBeEmpty => 'Password Confirm password cannot be empty';
+  String get passwordConfirmPasswordCannotBeEmpty =>
+      'Password Confirm password cannot be empty';
 
   @override
   String get accountCreatedSuccessfully => 'Account created successfully';
@@ -53,10 +57,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mobileNumberCannotBeEmpty => 'Mobile number cannot be empty';
 
   @override
-  String get signUpFailedPleaseTryAgainLater => 'Sign up failed Please try again later';
+  String get signUpFailedPleaseTryAgainLater =>
+      'Sign up failed Please try again later';
 
   @override
-  String get forAnyQueriesPleaseContactUs => 'For any queries please contact us';
+  String get forAnyQueriesPleaseContactUs =>
+      'For any queries please contact us';
 
   @override
   String get email => 'Email';
@@ -77,13 +83,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get registerAsABuyer => 'Register as a Buyer';
 
   @override
-  String get findAndCompareSuppliersInOver70000Categories => 'Find and compare suppliers in over 70,000 categories Our team keeps listings up to date and assists with strategic sourcing opportunities';
+  String get findAndCompareSuppliersInOver70000Categories =>
+      'Find and compare suppliers in over 70,000 categories Our team keeps listings up to date and assists with strategic sourcing opportunities';
 
   @override
-  String get uploadACADModelToGetAQuoteWithinSecondsForCNCMachining3DPrintingInjectionMoldingSheetMetalFabricationAndMore => 'Upload a CAD model to get a quote within seconds for CNC machining, 3D printing, injection molding, sheet metal fabrication, and more';
+  String get uploadACADModelToGetAQuoteWithinSecondsForCNCMachining3DPrintingInjectionMoldingSheetMetalFabricationAndMore =>
+      'Upload a CAD model to get a quote within seconds for CNC machining, 3D printing, injection molding, sheet metal fabrication, and more';
 
   @override
-  String get registeredBuyersCanContactAndQuoteWithMultipleSuppliersCheckOutWithAQuoteAndPayOnTermsWithinOnePlatform => 'Registered buyers can contact and quote with multiple suppliers, check out with a quote, and pay on terms within one platform';
+  String get registeredBuyersCanContactAndQuoteWithMultipleSuppliersCheckOutWithAQuoteAndPayOnTermsWithinOnePlatform =>
+      'Registered buyers can contact and quote with multiple suppliers, check out with a quote, and pay on terms within one platform';
 
   @override
   String get search => 'Search';
@@ -143,7 +152,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profilePictureChanged => 'Profile picture changed';
 
   @override
-  String get errorProfilePictureUploadFailed => 'Error Profile picture upload failed';
+  String get errorProfilePictureUploadFailed =>
+      'Error Profile picture upload failed';
 
   @override
   String get supplierDetails => 'Supplier details';
@@ -224,5 +234,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get failedToPickAFile => 'Failed to pick a file';
 
   @override
-  String get pleaseSelectAProfilePictureToUpload => 'Please select a profile picture to upload';
+  String get pleaseSelectAProfilePictureToUpload =>
+      'Please select a profile picture to upload';
+
+  @override
+  String get contactInfo => 'Contact info';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get french => 'French';
 }

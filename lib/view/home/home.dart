@@ -3,12 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:local_mining_supplier/constants/constants.dart';
 import 'package:local_mining_supplier/flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:local_mining_supplier/l10n/support_locale.dart';
-import 'package:local_mining_supplier/provider/locale_provider.dart';
 import 'package:local_mining_supplier/router/routes.dart';
 import 'package:local_mining_supplier/view/home/widgets/information_with_icon.dart';
 import 'package:local_mining_supplier/view/home/widgets/search_widget.dart';
-import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -46,33 +43,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                         child: rowOfSearchWithTextField(context))),
                 Positioned(
-                  top: 10.sp,
-                  right: 10.sp,
-                  child: DropdownButton(
-                    icon: Icon(Icons.language),
-                    items: [
-                      DropdownMenuItem(
-                        value: 'en',
-                        child: Text(
-                          'English',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      DropdownMenuItem(
-                          value: 'fr',
-                          child: Text('French',
-                              style: TextStyle(fontWeight: FontWeight.bold))),
-                    ],
-                    onChanged: (v) {
-                      setState(() {
-                        L10n.lang = v!;
-                        context.read<LocaleProvider>().setLocale(Locale(v));
-                      });
-                    },
-                    value: L10n.lang,
-                  ),
-                ),
-                Positioned(
                     bottom: 30.sp,
                     left: 25.sp,
                     right: 25.sp,
@@ -80,17 +50,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          // List listOfTitle = [
-                          //   "Discover Suppliers",
-                          //   "Get an Instant Quote",
-                          //   "Register as a Buyer"
-                          // ];
-
-                          // List listOfSubTitle = [
-                          //   "Find and compare suppliers in over 70,000 categories. Our team keeps listings up to date and assists with strategic sourcing opportunities.",
-                          //   "Upload a CAD model to get a quote within seconds for CNC machining, 3D printing, injection molding, sheet metal fabrication, and more.",
-                          //   "Registered buyers can contact and quote with multiple suppliers, check out with a quote, and pay on terms within one platform."
-                          // ];
                           informationWithIcon(
                               icon: Icons.search,
                               titleText: AppLocalizations.of(context)!
@@ -157,12 +116,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             informationRow(
                                 label:
-                                    "${AppLocalizations.of(context)!.email} :",
+                                    "${AppLocalizations.of(context)!.contactInfo} :",
                                 value: data['email']),
-                            informationRow(
-                                label:
-                                    "${AppLocalizations.of(context)!.call} :",
-                                value: data['number']),
                             informationRow(
                                 label:
                                     "${AppLocalizations.of(context)!.location} :",
@@ -183,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Row(
       children: [
         Text(
-          "$label",
+          "$label ",
           style: TextStyle(
               fontSize: 5.sp, color: Colors.white, fontWeight: FontWeight.bold),
         ),

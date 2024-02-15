@@ -9,6 +9,7 @@ import 'package:local_mining_supplier/provider/locale_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../l10n/support_locale.dart';
 import '../router/login_state_check.dart';
 import '../router/routes.dart';
 
@@ -35,7 +36,7 @@ List menuNames = [
   "About us",
 ];
 
-List <String> loginSignup = [
+List<String> loginSignup = [
   "login",
   "signup",
 ];
@@ -137,46 +138,126 @@ Widget topMenuBar(context) {
             : GoRouter.of(context).location == AppPaths.loginPath ||
                     GoRouter.of(context).location == AppPaths.signUpPath ||
                     FirebaseAuth.instance.currentUser != null
-                ? SizedBox()
+                ? StatefulBuilder(builder: (context, state) {
+                    return SizedBox(
+                      height: 10.sp,
+                      width: 30.sp,
+                      child: DropdownButton(
+                        borderRadius: BorderRadius.circular(5.sp),
+                        padding: EdgeInsets.only(left: 2.5.sp),
+                        underline: Container(),
+                        elevation: 0,
+                        focusColor: Colors.transparent,
+                        dropdownColor: mainColor,
+                        alignment: Alignment.center,
+                        icon: Icon(
+                          Icons.language,
+                          color: Colors.white,
+                        ),
+                        items: [
+                          DropdownMenuItem(
+                            value: 'en',
+                            child: Text(
+                              AppLocalizations.of(context)!.english,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            ),
+                          ),
+                          DropdownMenuItem(
+                              value: 'fr',
+                              child: Text(AppLocalizations.of(context)!.french,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white))),
+                        ],
+                        onChanged: (v) {
+                          state(() {
+                            L10n.lang = v!;
+                            context.read<LocaleProvider>().setLocale(Locale(v));
+                          });
+                        },
+                        value: L10n.lang,
+                      ),
+                    );
+                  })
                 : Padding(
                     padding: EdgeInsets.only(right: 10.sp),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 5.sp),
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.white),
-                              onPressed: () {
-                               
-                                  GoRouter.of(context).push(AppPaths.loginPath);
-                               
-                              },
-                              child: Text(
-                                AppLocalizations.of(context)!.login,
-                                style: TextStyle(color: mainColor),
-                              )),
-                        ),
-                          Padding(
-                          padding: EdgeInsets.only(left: 5.sp),
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.white),
-                              onPressed: () {
-                                
-                                  GoRouter.of(context)
-                                      .push(AppPaths.signUpPath);
-                                
-                              },
-                              child: Text(
-                                AppLocalizations.of(context)!.signUp,
-                                style: TextStyle(color: mainColor),
-                              )),
-                        ),
-                      ]
-                    ),
+                    child: Row(children: [
+                      StatefulBuilder(builder: (context, state) {
+                        return SizedBox(
+                          height: 10.sp,
+                          width: 30.sp,
+                          child: DropdownButton(
+                            borderRadius: BorderRadius.circular(5.sp),
+                            padding: EdgeInsets.only(left: 2.5.sp),
+                            underline: Container(),
+                            elevation: 0,
+                            focusColor: Colors.transparent,
+                            dropdownColor: mainColor,
+                            alignment: Alignment.center,
+                            icon: Icon(
+                              Icons.language,
+                              color: Colors.white,
+                            ),
+                            items: [
+                              DropdownMenuItem(
+                                value: 'en',
+                                child: Text(
+                                  AppLocalizations.of(context)!.english,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                  value: 'fr',
+                                  child: Text(
+                                      AppLocalizations.of(context)!.french,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white))),
+                            ],
+                            onChanged: (v) {
+                              state(() {
+                                L10n.lang = v!;
+                                context
+                                    .read<LocaleProvider>()
+                                    .setLocale(Locale(v));
+                              });
+                            },
+                            value: L10n.lang,
+                          ),
+                        );
+                      }),
+                      Padding(
+                        padding: EdgeInsets.only(left: 5.sp),
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white),
+                            onPressed: () {
+                              GoRouter.of(context).push(AppPaths.loginPath);
+                            },
+                            child: Text(
+                              AppLocalizations.of(context)!.login,
+                              style: TextStyle(color: mainColor),
+                            )),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 5.sp),
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white),
+                            onPressed: () {
+                              GoRouter.of(context).push(AppPaths.signUpPath);
+                            },
+                            child: Text(
+                              AppLocalizations.of(context)!.signUp,
+                              style: TextStyle(color: mainColor),
+                            )),
+                      ),
+                    ]),
                   ),
-      
       ],
     ),
   );

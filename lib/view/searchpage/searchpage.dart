@@ -145,9 +145,7 @@ class _UserSearchPageState extends State<UserSearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: topMenuBar(context),
-      ),
+      appBar: AppBar(),
       body: Column(
         children: [
           Padding(

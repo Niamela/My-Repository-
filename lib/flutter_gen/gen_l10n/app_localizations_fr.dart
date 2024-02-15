@@ -23,10 +23,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get loggedIn => 'Connecté';
 
   @override
-  String get enterEmailAndPasswordToLogin => 'Entrez votre email et votre mot de passe pour vous connecter';
+  String get enterEmailAndPasswordToLogin =>
+      'Entrez votre email et votre mot de passe pour vous connecter';
 
   @override
-  String get loginFailedPleaseTryAgainLater => 'Échec de la connexion Veuillez réessayer plus tard';
+  String get loginFailedPleaseTryAgainLater =>
+      'Échec de la connexion Veuillez réessayer plus tard';
 
   @override
   String get loggedOut => 'Déconnecté';
@@ -35,10 +37,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get logoutFailed => 'Échec de la déconnexion';
 
   @override
-  String get passwordsDoNotMatchPleaseCorrectAndTryAgain => 'Les mots de passe ne correspondent pas Veuillez corriger et réessayer';
+  String get passwordsDoNotMatchPleaseCorrectAndTryAgain =>
+      'Les mots de passe ne correspondent pas Veuillez corriger et réessayer';
 
   @override
-  String get passwordConfirmPasswordCannotBeEmpty => 'Le mot de passe/Confirmer le mot de passe ne peut pas être vide';
+  String get passwordConfirmPasswordCannotBeEmpty =>
+      'Le mot de passe/Confirmer le mot de passe ne peut pas être vide';
 
   @override
   String get accountCreatedSuccessfully => 'Compte créé avec succès';
@@ -50,13 +54,16 @@ class AppLocalizationsFr extends AppLocalizations {
   String get emailCannotBeEmpty => 'L’email ne peut pas être vide';
 
   @override
-  String get mobileNumberCannotBeEmpty => 'Le numéro de mobile ne peut pas être vide';
+  String get mobileNumberCannotBeEmpty =>
+      'Le numéro de mobile ne peut pas être vide';
 
   @override
-  String get signUpFailedPleaseTryAgainLater => 'Échec de l’inscription Veuillez réessayer plus tard';
+  String get signUpFailedPleaseTryAgainLater =>
+      'Échec de l’inscription Veuillez réessayer plus tard';
 
   @override
-  String get forAnyQueriesPleaseContactUs => 'Pour toute question veuillez nous contacter';
+  String get forAnyQueriesPleaseContactUs =>
+      'Pour toute question veuillez nous contacter';
 
   @override
   String get email => 'Email';
@@ -77,13 +84,16 @@ class AppLocalizationsFr extends AppLocalizations {
   String get registerAsABuyer => 'S’inscrire en tant qu’acheteur';
 
   @override
-  String get findAndCompareSuppliersInOver70000Categories => 'Trouvez et comparez des fournisseurs dans plus de 70 000 catégories Notre équipe tient les listes à jour et aide dans les opportunités de sourcing stratégique';
+  String get findAndCompareSuppliersInOver70000Categories =>
+      'Trouvez et comparez des fournisseurs dans plus de 70 000 catégories Notre équipe tient les listes à jour et aide dans les opportunités de sourcing stratégique';
 
   @override
-  String get uploadACADModelToGetAQuoteWithinSecondsForCNCMachining3DPrintingInjectionMoldingSheetMetalFabricationAndMore => 'Téléchargez un modèle CAO pour obtenir un devis en quelques secondes pour l’usinage CNC l’impression 3D le moulage par injection la fabrication de tôles et plus encore';
+  String get uploadACADModelToGetAQuoteWithinSecondsForCNCMachining3DPrintingInjectionMoldingSheetMetalFabricationAndMore =>
+      'Téléchargez un modèle CAO pour obtenir un devis en quelques secondes pour l’usinage CNC l’impression 3D le moulage par injection la fabrication de tôles et plus encore';
 
   @override
-  String get registeredBuyersCanContactAndQuoteWithMultipleSuppliersCheckOutWithAQuoteAndPayOnTermsWithinOnePlatform => 'Les acheteurs enregistrés peuvent contacter et obtenir des devis auprès de plusieurs fournisseurs passer commande avec un devis et payer selon les modalités sur une seule plateforme';
+  String get registeredBuyersCanContactAndQuoteWithMultipleSuppliersCheckOutWithAQuoteAndPayOnTermsWithinOnePlatform =>
+      'Les acheteurs enregistrés peuvent contacter et obtenir des devis auprès de plusieurs fournisseurs passer commande avec un devis et payer selon les modalités sur une seule plateforme';
 
   @override
   String get search => 'Rechercher';
@@ -107,7 +117,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get websites => 'Sites Web';
 
   @override
-  String get youCanAddUpTo3WebsitesOnly => 'Vous pouvez ajouter jusqu’à 3 sites Web seulement';
+  String get youCanAddUpTo3WebsitesOnly =>
+      'Vous pouvez ajouter jusqu’à 3 sites Web seulement';
 
   @override
   String get websiteUrl => 'URL du site Web';
@@ -143,7 +154,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get profilePictureChanged => 'Photo de profil changée';
 
   @override
-  String get errorProfilePictureUploadFailed => 'Erreur Échec du téléchargement de la photo de profil';
+  String get errorProfilePictureUploadFailed =>
+      'Erreur Échec du téléchargement de la photo de profil';
 
   @override
   String get supplierDetails => 'Détails du fournisseur';
@@ -167,10 +179,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get aboutSupplier => 'À propos du fournisseur';
 
   @override
-  String get errorFetchingAddresses => 'Erreur lors de la récupération des adresses';
+  String get errorFetchingAddresses =>
+      'Erreur lors de la récupération des adresses';
 
   @override
-  String get errorSearchingUsers => 'Erreur lors de la recherche d’utilisateurs';
+  String get errorSearchingUsers =>
+      'Erreur lors de la recherche d’utilisateurs';
 
   @override
   String get confirmPassword => 'Confirmer le mot de passe';
@@ -191,7 +205,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get aboutCompany => 'À propos de l\'entreprise';
 
   @override
-  String get pleaseAddCompanyInformation => 'Veuillez ajouter les informations de l\'entreprise';
+  String get pleaseAddCompanyInformation =>
+      'Veuillez ajouter les informations de l\'entreprise';
 
   @override
   String get mobileNumber => 'Numéro de mobile';
@@ -203,7 +218,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get websitesUpdated => 'Sites Web mis à jour';
 
   @override
-  String get couldNotUpdateTheWebsite => 'Impossible de mettre à jour le site Web';
+  String get couldNotUpdateTheWebsite =>
+      'Impossible de mettre à jour le site Web';
 
   @override
   String get dataUpdatedSuccessfully => 'Données mises à jour avec succès';
@@ -215,7 +231,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get companyUpdate => 'Mise à jour de l\'entreprise';
 
   @override
-  String get couldNotUpdateTheDetails => 'Impossible de mettre à jour les détails';
+  String get couldNotUpdateTheDetails =>
+      'Impossible de mettre à jour les détails';
 
   @override
   String get userNotAuthenticated => 'Utilisateur non authentifié';
@@ -224,5 +241,15 @@ class AppLocalizationsFr extends AppLocalizations {
   String get failedToPickAFile => 'Échec de la sélection d\'un fichier';
 
   @override
-  String get pleaseSelectAProfilePictureToUpload => 'Veuillez sélectionner une photo de profil à télécharger';
+  String get pleaseSelectAProfilePictureToUpload =>
+      'Veuillez sélectionner une photo de profil à télécharger';
+
+  @override
+  String get contactInfo => "Informations de contact";
+
+  @override
+  String get english => "Anglaise";
+
+  @override
+  String get french => "Français";
 }
