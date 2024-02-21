@@ -7,9 +7,15 @@ import 'package:sizer/sizer.dart';
 
 import '../../model/usermodel.dart';
 
-class SupplierProfile extends StatelessWidget {
-  SupplierProfile({super.key});
+class SupplierProfile extends StatefulWidget {
+  final String profileid;
+  SupplierProfile({super.key, required this.profileid});
 
+  @override
+  State<SupplierProfile> createState() => _SupplierProfileState();
+}
+
+class _SupplierProfileState extends State<SupplierProfile> {
   final isLoaded = false.obs;
 
   final titleTextStyle = TextStyle(
@@ -58,9 +64,12 @@ class SupplierProfile extends StatelessWidget {
                                   child: CircularProgressIndicator()));
                         } else if (snapshot.hasError) {
                           return Center(
-                              child: Text('${AppLocalizations.of(context)!.error}: ${snapshot.error}'));
+                              child: Text(
+                                  '${AppLocalizations.of(context)!.error}: ${snapshot.error}'));
                         } else if (!snapshot.hasData) {
-                          return Center(child: Text(AppLocalizations.of(context)!.noDataAvailable));
+                          return Center(
+                              child: Text(AppLocalizations.of(context)!
+                                  .noDataAvailable));
                         }
                         final data = snapshot.data!.data()!;
                         UserModel user = UserModel(
@@ -75,13 +84,16 @@ class SupplierProfile extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(AppLocalizations.of(context)!.supplierDetails, style: titleTextStyle),
+                              Text(
+                                  AppLocalizations.of(context)!.supplierDetails,
+                                  style: titleTextStyle),
                               SizedBox(
                                 height: 5.sp,
                               ),
                               Row(
                                 children: [
-                                  Text("${AppLocalizations.of(context)!.supplierName}: ",
+                                  Text(
+                                      "${AppLocalizations.of(context)!.supplierName}: ",
                                       style: subtitleTextStyle),
                                   SelectableText("${user.name}",
                                       style: valueTextStyle),
@@ -90,7 +102,8 @@ class SupplierProfile extends StatelessWidget {
                               sizedBox,
                               Row(
                                 children: [
-                                  Text("${AppLocalizations.of(context)!.supplierEmail}: ",
+                                  Text(
+                                      "${AppLocalizations.of(context)!.supplierEmail}: ",
                                       style: subtitleTextStyle),
                                   SelectableText("${user.email}",
                                       style: valueTextStyle),
@@ -99,7 +112,8 @@ class SupplierProfile extends StatelessWidget {
                               sizedBox,
                               Row(
                                 children: [
-                                  Text("${AppLocalizations.of(context)!.supplierLocation}: ",
+                                  Text(
+                                      "${AppLocalizations.of(context)!.supplierLocation}: ",
                                       style: subtitleTextStyle),
                                   SelectableText("${user.address}",
                                       style: valueTextStyle),
@@ -108,7 +122,8 @@ class SupplierProfile extends StatelessWidget {
                               sizedBox,
                               Row(
                                 children: [
-                                  Text("${AppLocalizations.of(context)!.supplierContactNumber}: ",
+                                  Text(
+                                      "${AppLocalizations.of(context)!.supplierContactNumber}: ",
                                       style: subtitleTextStyle),
                                   SelectableText("${user.mobileNumber}",
                                       style: valueTextStyle),
@@ -118,7 +133,8 @@ class SupplierProfile extends StatelessWidget {
                               user.services!.isNotEmpty
                                   ? Row(
                                       children: [
-                                        Text("${AppLocalizations.of(context)!.servicesOffered}: ",
+                                        Text(
+                                            "${AppLocalizations.of(context)!.servicesOffered}: ",
                                             style: subtitleTextStyle),
                                         Row(
                                           children: List.generate(
@@ -141,7 +157,8 @@ class SupplierProfile extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text("${AppLocalizations.of(context)!.aboutSupplier}: ",
+                                  Text(
+                                      "${AppLocalizations.of(context)!.aboutSupplier}: ",
                                       style: subtitleTextStyle),
                                   SizedBox(
                                       width: 80.w,

@@ -106,7 +106,8 @@ class MyRouter {
           name: AppRoutes.supplierProfileScreen,
           path: AppPaths.supplierProfilePath,
           pageBuilder: (context, state) {
-            return MaterialPage(child: SupplierProfile());
+             final query = state.queryParams['query'];
+            return MaterialPage(child: SupplierProfile(profileid:query!));
           },
         ),
       ],
