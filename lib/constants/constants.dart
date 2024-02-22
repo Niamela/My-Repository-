@@ -54,9 +54,7 @@ Widget topMenuBar(context) {
           padding: EdgeInsets.only(left: 7.5.sp, top: 2.5.sp, bottom: 2.5.sp),
           child: InkWell(
             onTap: () {
-              if (GoRouter.of(context).location == AppPaths.loginPath ||
-                  GoRouter.of(context).location == AppPaths.signUpPath) {
-              } else {
+              if (GoRouter.of(context).location != AppPaths.homepath) {
                 GoRouter.of(context).pushReplacement(AppPaths.homepath);
               }
             },
@@ -182,8 +180,48 @@ Widget topMenuBar(context) {
                     );
                   })
                 : Padding(
-                    padding: EdgeInsets.only(right: 10.sp),
+                    padding: EdgeInsets.only(right: 5.sp),
                     child: Row(children: [
+                      TextButton(
+                          onPressed: () {
+                            if (GoRouter.of(context).location !=
+                                AppPaths.aboutUs) {
+                              GoRouter.of(context).push(AppPaths.aboutUs);
+                            }
+                          },
+                          child: Text(
+                            AppLocalizations.of(context)!.aboutUs,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 5.sp,
+                                fontWeight: FontWeight.bold),
+                          )),
+                      Padding(
+                        padding: EdgeInsets.only(left: 10.sp),
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white),
+                            onPressed: () {
+                              GoRouter.of(context).push(AppPaths.loginPath);
+                            },
+                            child: Text(
+                              AppLocalizations.of(context)!.login,
+                              style: TextStyle(color: mainColor),
+                            )),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 5.sp, right: 5.sp),
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white),
+                            onPressed: () {
+                              GoRouter.of(context).push(AppPaths.signUpPath);
+                            },
+                            child: Text(
+                              AppLocalizations.of(context)!.signUp,
+                              style: TextStyle(color: mainColor),
+                            )),
+                      ),
                       StatefulBuilder(builder: (context, state) {
                         return SizedBox(
                           height: 10.sp,
@@ -230,32 +268,6 @@ Widget topMenuBar(context) {
                           ),
                         );
                       }),
-                      Padding(
-                        padding: EdgeInsets.only(left: 5.sp),
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white),
-                            onPressed: () {
-                              GoRouter.of(context).push(AppPaths.loginPath);
-                            },
-                            child: Text(
-                              AppLocalizations.of(context)!.login,
-                              style: TextStyle(color: mainColor),
-                            )),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 5.sp),
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white),
-                            onPressed: () {
-                              GoRouter.of(context).push(AppPaths.signUpPath);
-                            },
-                            child: Text(
-                              AppLocalizations.of(context)!.signUp,
-                              style: TextStyle(color: mainColor),
-                            )),
-                      ),
                     ]),
                   ),
       ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:local_mining_supplier/view/about_us/about_us.dart';
 import 'package:local_mining_supplier/view/home/home.dart';
 import 'package:local_mining_supplier/view/profile/profile.dart';
 import 'package:local_mining_supplier/view/profile/supplier_profile.dart';
@@ -19,6 +20,7 @@ class AppRoutes {
   static const userProfileScreen = "userprofile";
   static const supplierProfileScreen = "supplier";
   static const searchpage = "searchpage";
+  static const aboutUs = "aboutUs";
 }
 
 class AppPaths {
@@ -29,6 +31,7 @@ class AppPaths {
   static const userProfilePath = "/userprofile";
   static const supplierProfilePath = "/supplier";
   static const searchPath = "/search";
+  static const aboutUs = "/aboutus";
 }
 
 class MyRouter {
@@ -107,6 +110,13 @@ class MyRouter {
           path: AppPaths.supplierProfilePath,
           pageBuilder: (context, state) {
             return MaterialPage(child: SupplierProfile());
+          },
+        ),
+        GoRoute(
+          name: AppRoutes.aboutUs,
+          path: AppPaths.aboutUs,
+          pageBuilder: (context, state) {
+            return MaterialPage(child: AboutUsScreen());
           },
         ),
       ],

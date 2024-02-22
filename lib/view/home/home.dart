@@ -35,8 +35,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 // Positioned(top: 10.sp, left: 10.sp, child: rowOfSearch()),
                 Positioned(
-                    top: 10.sp,
-                    left: 10.sp,
+                    top: 30.sp,
+                    left: 30.sp,
+                    right: 30.sp,
                     child: InkWell(
                         onTap: () {
                           GoRouter.of(context).push(AppRoutes.searchpage);

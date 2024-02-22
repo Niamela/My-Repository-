@@ -252,4 +252,20 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get french => "Français";
+
+  @override
+  String get aboutHeader =>
+      "Local Mining Services est une plateforme innovante dédiée à la mise en relation des fournisseurs locaux et des sociétés minières en Afrique. Notre mission est de contribuer au développement du secteur minier africain en favorisant l'inclusion et la croissance locale.Notre plateforme offre plusieurs avantages aux fournisseurs locaux et aux sociétés minières: ";
+
+  @override
+  String get forSuppliers =>
+      "Pour les fournisseurs locaux: Accès à un large réseau de sociétés minières. Opportunités de croissance et de développement. Visibilité accrue et meilleure commercialisation. Renforcement des capacités et des compétences. Pour les sociétés minières: Accès à un large éventail de fournisseurs locaux. Gain de temps et d'argent dans la recherche de fournisseurs. Amélioration de la performance et de la durabilité de la chaîne d'approvisionnement. Contribution au développement local et à l'inclusion sociale";
+
+  @override
+  String get servicesOffers =>
+      "Local Mining Services offre une gamme de services aux fournisseurs locaux et aux sociétés minières, notamment : Mise en relation: Nous connectons les fournisseurs locaux aux sociétés minières qui ont besoin de leurs services et produits. Appui au développement des capacités: Nous offrons des formations et des services de conseil aux fournisseurs locaux pour les aider à renforcer leurs capacités et à répondre aux exigences des sociétés minières. Promotion du contenu local: Nous promouvons les services et produits des fournisseurs locaux auprès des sociétés minières et des autres acteurs du secteur.";
+
+  @override
+  String get easyToUse =>
+      "Local Mining Services est une plateforme facile à utiliser et accessible à tous. Les fournisseurs locaux peuvent créer un profil et présenter leurs produits ou services aux sociétés minières. Les sociétés minières peuvent rechercher des fournisseurs par pays, par type de produit ou service et par mot-clé. Local Mining Services s'engage à fournir un service de qualité aux fournisseurs locaux et aux sociétés minières. Notre équipe est composée d'experts du secteur minier africain qui sont passionnés par le développement local. Nous sommes convaincus que Local Mining Services peut jouer un rôle important dans la transformation du secteur minier africain. N'hésitez pas à nous contacter si vous avez des questions ou si vous souhaitez en savoir plus sur notre plateforme.";
 }

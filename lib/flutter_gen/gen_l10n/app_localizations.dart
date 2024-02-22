@@ -547,6 +547,14 @@ abstract class AppLocalizations {
   String get english;
 
   String get french;
+
+  String get aboutHeader;
+
+  String get forSuppliers;
+
+  String get servicesOffers;
+
+  String get easyToUse;
 }
 
 class _AppLocalizationsDelegate
