@@ -96,7 +96,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Les acheteurs enregistrés peuvent contacter et obtenir des devis auprès de plusieurs fournisseurs passer commande avec un devis et payer selon les modalités sur une seule plateforme';
 
   @override
-  String get search => 'Rechercher';
+  String get search => 'Rechercher un produit ou une entreprise';
 
   @override
   String get password => 'Mot de passe';

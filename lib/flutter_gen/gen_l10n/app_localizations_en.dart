@@ -95,7 +95,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Registered buyers can contact and quote with multiple suppliers, check out with a quote, and pay on terms within one platform';
 
   @override
-  String get search => 'Search';
+  String get search => 'Search a product or company';
 
   @override
   String get password => 'Password';

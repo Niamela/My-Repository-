@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:local_mining_supplier/constants/constants.dart';
+import 'package:local_mining_supplier/router/routes.dart';
 
 class UserModel {
+  String? id;
   String? name;
   String? email;
   String? mobileNumber;
@@ -11,6 +14,7 @@ class UserModel {
   List<String>? services;
 
   UserModel({
+    this.id,
     this.name,
     this.email,
     this.mobileNumber,
@@ -21,6 +25,7 @@ class UserModel {
 
   factory UserModel.fromMap(Map<String, dynamic> json) {
     return UserModel(
+      id:json["id"],
       name: json['name'],
       email: json['email'],
       mobileNumber: json['mobileNumber'],
@@ -187,28 +192,34 @@ class _UserSearchPageState extends State<UserSearchPage> {
             child: ListView.builder(
               itemCount: searchResults.length,
               itemBuilder: (context, index) {
-                return Card(
-                  child: ListTile(
-                    title: Text(
-                      searchResults[index].name ?? '',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: mainColor),
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // _buildFieldText('Email', searchResults[index].email),
+                return InkWell(
+                  onTap: () {
+                    GoRouter.of(context).push('${AppRoutes.supplierProfileScreen}?query=${searchResults[index].id}');
 
-                        _buildFieldText(
-                            'Address', searchResults[index].address),
-                        //  _buildFieldText('About Company',
-                        //     searchResults[index].about_company),
-                        _buildFieldText(
-                            'Services',
-                            searchResults[index].services != null
-                                ? searchResults[index].services!.join(', ')
-                                : 'N/A'),
-                      ],
+                  },
+                  child: Card(
+                    child: ListTile(
+                      title: Text(
+                        searchResults[index].name ?? '',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: mainColor),
+                      ),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // _buildFieldText('Email', searchResults[index].email),
+                  
+                          _buildFieldText(
+                              'Address', searchResults[index].address),
+                          //  _buildFieldText('About Company',
+                          //     searchResults[index].about_company),
+                          _buildFieldText(
+                              'Services',
+                              searchResults[index].services != null
+                                  ? searchResults[index].services!.join(', ')
+                                  : 'N/A'),
+                        ],
+                      ),
                     ),
                   ),
                 );
