@@ -21,8 +21,13 @@ Future<void> main() async {
           appId: "1:783100640985:web:008a904a33ac42e72148c8",
           messagingSenderId: "783100640985",
           projectId: "local-mining-supplier",
-          storageBucket: "local-mining-supplier.appspot.com"));
+          storageBucket: "local-mining-supplier.appspot.com")
+          
+          );
+          
+
   setPathUrlStrategy();
+  
   WidgetsFlutterBinding.ensureInitialized();
   final state = LoginState(await SharedPreferences.getInstance());
   state.checkLoggedIn();
