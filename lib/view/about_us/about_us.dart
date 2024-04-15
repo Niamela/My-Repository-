@@ -58,7 +58,7 @@ class AboutUsScreen extends StatelessWidget {
                         AppLocalizations.of(context)!.aboutHeader,
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: isPhone ? 18.sp : 6.sp),
+                            fontSize: isPhone ? 10.sp : 4.sp),
                       ),
                     ),
                   ),

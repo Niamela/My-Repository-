@@ -47,10 +47,10 @@ dependencies:
   shared_preferences:
   provider: ^6.1.1
   flutter_spinkit:
-  firebase_core: ^2.27.1
-  cloud_functions: ^4.6.9
-  firebase_auth: ^4.17.9
-  cloud_firestore: ^4.15.9
+  firebase_core:
+  cloud_functions:
+  firebase_auth:
+  cloud_firestore:
   firebase_storage:
   fluttertoast:
   file_picker:

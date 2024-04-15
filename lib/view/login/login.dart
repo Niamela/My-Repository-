@@ -3,7 +3,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:local_mining_supplier/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../constants/constants.dart';
@@ -33,18 +32,20 @@ class LoginScreen extends StatelessWidget {
             child: Column(
               children: [
                 customTextField(
-                    hintText:AppLocalizations.of(context)!.email,
+                    hintText: "Email",
                     controller: loginController.emailController.value),
                 SizedBox(height: 10.sp),
                 Obx(() {
                   return TextField(
                     obscureText: obscureText.value,
+                    cursorColor: mainColor,
                     controller: loginController.passwordController.value,
                     autofillHints: [AutofillHints.password],
                     onSubmitted: (value) {
                       loginController.login(context);
                     },
                     decoration: InputDecoration(
+                      labelStyle: TextStyle(color: mainColor),
                       suffixIcon: IconButton(
                           splashRadius: 4.sp,
                           icon: Icon(
@@ -52,11 +53,12 @@ class LoginScreen extends StatelessWidget {
                                 ? FontAwesomeIcons.eyeSlash
                                 : FontAwesomeIcons.eye,
                             size: 5.sp,
+                            color: obscureText.value ? Colors.grey : mainColor,
                           ),
                           onPressed: () {
                             obscureText.value = !obscureText.value;
                           }),
-                      labelText:AppLocalizations.of(context)!.password,
+                      labelText: "Password",
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: HexColor("#FFB8860B"))),
                       enabledBorder: OutlineInputBorder(),
@@ -69,6 +71,8 @@ class LoginScreen extends StatelessWidget {
                   width: 40.w,
                   child: Obx(() {
                     return ElevatedButton(
+                      style:
+                          ElevatedButton.styleFrom(backgroundColor: mainColor),
                       onPressed: () {
                         loginController.login(context);
                         loginController.emailController.value.clear();
@@ -79,8 +83,9 @@ class LoginScreen extends StatelessWidget {
                               color: Colors.white,
                             )
                           : Text(
-                              AppLocalizations.of(context)!.login,
-                              style: TextStyle(fontSize: 6.sp),
+                              'Login',
+                              style: TextStyle(
+                                  fontSize: 6.sp, color: Colors.white),
                             ),
                     );
                   }),
@@ -89,7 +94,7 @@ class LoginScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("${AppLocalizations.of(context)!.dontHaveAnAccount}?"),
+                    Text("Dont have an account?"),
                     TextButton(
                         onPressed: () {
                           GoRouter.of(context).push(AppPaths.signUpPath);
@@ -97,7 +102,10 @@ class LoginScreen extends StatelessWidget {
                         style: TextButton.styleFrom(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(7.5.sp))),
-                        child: Text(AppLocalizations.of(context)!.signUp))
+                        child: Text(
+                          "Sign up",
+                          style: TextStyle(color: mainColor),
+                        ))
                   ],
                 )
               ],
@@ -114,8 +122,10 @@ class LoginScreen extends StatelessWidget {
   }) {
     return TextField(
       controller: controller,
+      cursorColor: mainColor,
       decoration: InputDecoration(
         labelText: hintText,
+        labelStyle: TextStyle(color: mainColor),
         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: HexColor("#FFB8860B"))),
         enabledBorder: OutlineInputBorder(),

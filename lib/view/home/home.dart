@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:bambara_flutter/bambara_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -214,9 +213,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                             onPressed: () async {
                                               String token =
                                                   await gentok.fetchToken();
-                                              await gentok
-                                                  .makeWebPayment(token, subscriptions["Charges"]
-                                                          [index].toInt());
+                                              await gentok.makeWebPayment(
+                                                  token,
+                                                  subscriptions["Charges"]
+                                                          [index]
+                                                      .toInt());
                                             },
                                             style: ElevatedButton.styleFrom(
                                               padding: EdgeInsets.all(20.0),
@@ -226,7 +227,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             child: Row(
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
-                                                Text(
+                                                const Text(
                                                   '\$',
                                                   style: TextStyle(
                                                     fontSize: 16.0,

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:local_mining_supplier/constants/constants.dart';
 import 'package:local_mining_supplier/controllers/sign_up.dart';
-import 'package:local_mining_supplier/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../router/routes.dart';
@@ -30,23 +29,23 @@ class SignUpScreen extends StatelessWidget {
               child: Column(
                 children: [
                   customTextField(
-                      hintText: AppLocalizations.of(context)!.name,
+                      hintText: "Name",
                       controller: signUpController.nameController.value),
                   sizedBox,
                   customTextField(
-                      hintText: AppLocalizations.of(context)!.email,
+                      hintText: "Email",
                       controller: signUpController.emailController.value),
                   sizedBox,
                   customTextField(
-                      hintText:AppLocalizations.of(context)!.mobileNumber,
+                      hintText: "Mobile number",
                       controller: signUpController.mobileController.value),
                   sizedBox,
                   customTextField(
-                      hintText:AppLocalizations.of(context)!.password,
+                      hintText: "Password",
                       controller: signUpController.passwordController.value),
                   sizedBox,
                   customTextField(
-                      hintText: AppLocalizations.of(context)!.confirmPassword,
+                      hintText: "Confirm Password",
                       controller:
                           signUpController.confirmPasswordController.value),
                   sizedBox,
@@ -56,6 +55,8 @@ class SignUpScreen extends StatelessWidget {
                     width: 40.w,
                     child: Obx(() {
                       return ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: mainColor),
                         onPressed: () {
                           signUpController.signup(context);
                         },
@@ -64,8 +65,9 @@ class SignUpScreen extends StatelessWidget {
                                 color: Colors.white,
                               )
                             : Text(
-                               AppLocalizations.of(context)!.signUp,
-                                style: TextStyle(fontSize: 6.sp),
+                                'Sign up',
+                                style: TextStyle(
+                                    fontSize: 6.sp, color: Colors.white),
                               ),
                       );
                     }),
@@ -74,7 +76,7 @@ class SignUpScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("${AppLocalizations.of(context)!.alreadyHaveAnAccount}? "),
+                      Text("Already have an account? "),
                       TextButton(
                           onPressed: () {
                             GoRouter.of(context).push(AppPaths.loginPath);
@@ -82,7 +84,10 @@ class SignUpScreen extends StatelessWidget {
                           style: TextButton.styleFrom(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(7.5.sp))),
-                          child: Text(AppLocalizations.of(context)!.login))
+                          child: Text(
+                            "Login",
+                            style: TextStyle(color: mainColor),
+                          ))
                     ],
                   )
                 ],
@@ -102,9 +107,13 @@ class SignUpScreen extends StatelessWidget {
       {TextEditingController? controller, String? hintText}) {
     return TextField(
       controller: controller,
+      cursorColor: mainColor,
+      style: TextStyle(color: mainColor),
       decoration: InputDecoration(
         labelText: hintText,
-        focusedBorder: OutlineInputBorder(borderSide: BorderSide()),
+        labelStyle: TextStyle(color: mainColor),
+        focusedBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: mainColor)),
         enabledBorder: OutlineInputBorder(),
       ),
     );

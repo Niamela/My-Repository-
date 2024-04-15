@@ -7,7 +7,7 @@ Widget informationWithIcon(
   return Padding(
     padding: EdgeInsets.all(3.sp),
     child: Container(
-      height: 45.h,
+      height: 50.h,
       decoration: BoxDecoration(
           color: CupertinoColors.white,
           borderRadius: BorderRadius.circular(10.sp)),
