@@ -153,9 +153,11 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: EdgeInsets.only(top: 20.h, left: 10.w, right: 10.w),
               child: Stack(children: [
                 Container(
-                    color: mainColor,
                     width: 90.w,
-                    height: 60.h,
+                    height: 55.h,
+                    decoration: BoxDecoration(
+                        color: mainColor,
+                        borderRadius: BorderRadius.circular(10.sp)),
                     child: StreamBuilder(
                       stream: FirebaseFirestore.instance
                           .collection('sitedata')
@@ -186,7 +188,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: Container(
                                     height: 50.w,
                                     width: 22.w,
-                                    color: Color.fromARGB(255, 255, 255, 255),
+                                    padding: EdgeInsets.all(2.sp),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5.sp),
+                                      color: Color.fromARGB(255, 255, 255, 255),
+                                    ),
                                     child: Column(
                                       children: [
                                         Text(
@@ -232,6 +238,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   style: TextStyle(
                                                     fontSize: 16.0,
                                                     // Adjust font size as needed
+                                                    color: Colors.white,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
@@ -269,7 +276,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                     )),
                 Positioned(
-                  right: 1.w,
+                  right: 1.5.w,
+                  top: 0.5.w,
                   child: IconButton(
                     onPressed: () {
                       setState(() {
@@ -278,9 +286,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                     icon: Icon(
                       Icons.close,
-                      color: Colors.black,
+                      color: Colors.white,
                     ),
-                    iconSize: 24.0,
+                    iconSize: 6.sp,
                     splashRadius: 24.0,
                     padding: EdgeInsets.all(0),
                     constraints: BoxConstraints(),
