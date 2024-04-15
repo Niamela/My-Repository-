@@ -4,8 +4,10 @@ import 'package:bambara_flutter/bambara_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:local_mining_supplier/constants/constants.dart';
+import 'package:local_mining_supplier/controllers/gentok.dart';
 import 'package:local_mining_supplier/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:local_mining_supplier/router/routes.dart';
 import 'package:local_mining_supplier/view/home/widgets/information_with_icon.dart';
@@ -18,6 +20,8 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
+
+GenTokController gentok = Get.put(GenTokController());
 
 class _HomeScreenState extends State<HomeScreen> {
   final backGroundImage1 = "assets/mining_bg.jpg";
@@ -208,38 +212,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                           padding: const EdgeInsets.all(8.0),
                                           child: ElevatedButton(
                                             onPressed: () async {
-                                               await BambaraView(
-                        data: BambaraData(
-                          amount: subscriptions["Charges"]
-                                                          [index]
-                                                    ,
-                          provider: 'bank-card',
-                          reference: getRandomString(30),
-                          phone: "786339816",
-                          email: "bass@gmail.com",
-                          name: "Bassirou",
-                          publicKey: "pk_IuR83FabBsxW2P6mHPJywyGljga9QcFg",
-                        ),
-                        onClosed: () => print("CLOSED"),
-                        onError: (data) => print(data),
-                        onSuccess: (data) {
-                          if(subscriptions["Charges"][index].toString()=='29'){
-                             updateUserExpirationDate(subscriptions["Charges"][index]);              
-                          }
-                          else if(subscriptions["Charges"][index].toString()=='349'){
-
-                              updateUserExpirationDate(subscriptions["Charges"][index]);
-                          }
-                          else{
-                             updateUserExpirationDate(subscriptions["Charges"][index]);
-                          }},
-                        onRedirect: (data) => print(data),
-                        onProcessing: (data) => print(data),
-                        closeOnComplete: false,
-                      ).show(context);
+                                              String token =
+                                                  await gentok.fetchToken();
+                                              await gentok
+                                                  .makeWebPayment(token, subscriptions["Charges"]
+                                                          [index].toInt());
                                             },
                                             style: ElevatedButton.styleFrom(
-                                              padding: EdgeInsets.all(20.0), backgroundColor: mainColor, // Button background color
+                                              padding: EdgeInsets.all(20.0),
+                                              backgroundColor:
+                                                  mainColor, // Button background color
                                             ),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.min,
@@ -326,13 +308,13 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
     );
   }
-  
 }
 
 void updateUserExpirationDate(int charge) async {
   String userId = FirebaseAuth.instance.currentUser!.uid;
 
-  final CollectionReference users = FirebaseFirestore.instance.collection('users');
+  final CollectionReference users =
+      FirebaseFirestore.instance.collection('users');
 
   DateTime expirationDate;
   if (charge == 29) {
@@ -340,7 +322,6 @@ void updateUserExpirationDate(int charge) async {
   } else if (charge == 349) {
     expirationDate = DateTime.now().add(Duration(days: 365));
   } else {
-    
     return;
   }
 
@@ -349,6 +330,7 @@ void updateUserExpirationDate(int charge) async {
     'expiration_date': expirationDate,
   });
 }
+
 const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
 Random _rnd = Random();
 
