@@ -65,7 +65,7 @@ class GenTokController extends GetxController {
       "merchant_key": "a7cca573",
       "currency": "OUV",
       "order_id": randomOrderId,
-      "amount": 1200,
+      "amount": amount,
       "return_url": "http://myvirtualshop.webnode.es",
       "cancel_url": "http://myvirtualshop.webnode.es/txncncld/",
       "notif_url": "http://www.merchant-example2.org/notif",
