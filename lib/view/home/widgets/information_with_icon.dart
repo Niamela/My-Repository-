@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:local_mining_supplier/constants/constants.dart';
 import 'package:sizer/sizer.dart';
 
@@ -31,6 +32,48 @@ Widget informationWithIcon(
               child: Text(subtitle!,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 4.sp)))
+        ],
+      ),
+    ),
+  );
+}
+
+Widget informationWithIconMobile(
+    {IconData? icon, String? titleText, String? subtitle}) {
+  return Padding(
+    padding: EdgeInsets.all(5.sp),
+    child: Container(
+      height: 20.h,
+      width: 45.w,
+      decoration: BoxDecoration(
+          color: Color(0xFFCD7F32),
+          borderRadius: BorderRadius.circular(10.sp),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey,
+              blurRadius: 5.sp,
+            )
+          ]),
+      padding: EdgeInsets.all(5.sp),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Icon(icon, color: Colors.white, size: 35.sp),
+          SizedBox(
+            height: 5.sp,
+          ),
+          SizedBox(
+              child: Text(titleText!,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 12.sp, color: Colors.white))),
+          SizedBox(
+            height: 5.sp,
+          ),
+          SizedBox(
+              child: Text(subtitle!,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 8.sp, color: Colors.white)))
         ],
       ),
     ),

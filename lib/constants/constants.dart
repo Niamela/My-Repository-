@@ -15,6 +15,7 @@ import '../router/routes.dart';
 
 const String loggedInKey = 'LoggedIn';
 const mainColor = Color(0xFFCD7F32);
+final isLoggedIn = false.obs;
 
 toast({required String msg}) {
   return Fluttertoast.showToast(msg: msg);

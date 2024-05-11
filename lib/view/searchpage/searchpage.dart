@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:local_mining_supplier/constants/constants.dart';
 import 'package:local_mining_supplier/router/routes.dart';
+import 'package:sizer/sizer.dart';
 
 class UserModel {
   String? id;
@@ -25,7 +26,7 @@ class UserModel {
 
   factory UserModel.fromMap(Map<String, dynamic> json) {
     return UserModel(
-      id:json["id"],
+      id: json["id"],
       name: json['name'],
       email: json['email'],
       mobileNumber: json['mobileNumber'],
@@ -149,8 +150,11 @@ class _UserSearchPageState extends State<UserSearchPage> {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = MediaQuery.of(context).size.width < 600;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        automaticallyImplyLeading: true,
+      ),
       body: Column(
         children: [
           Padding(
@@ -194,21 +198,24 @@ class _UserSearchPageState extends State<UserSearchPage> {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                    GoRouter.of(context).push('${AppRoutes.supplierProfileScreen}?query=${searchResults[index].id}');
-
+                    GoRouter.of(context).push(
+                        '${AppRoutes.supplierProfileScreen}?query=${searchResults[index].id}');
                   },
                   child: Card(
                     child: ListTile(
                       title: Text(
                         searchResults[index].name ?? '',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, color: mainColor),
+                          fontWeight: FontWeight.bold,
+                          color: mainColor,
+                          fontSize: isMobile ? 14.sp : 18.sp,
+                        ),
                       ),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // _buildFieldText('Email', searchResults[index].email),
-                  
+
                           _buildFieldText(
                               'Address', searchResults[index].address),
                           //  _buildFieldText('About Company',
@@ -232,20 +239,21 @@ class _UserSearchPageState extends State<UserSearchPage> {
   }
 
   Widget _buildFieldText(String fieldName, String? value) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
-      child: Row(
-        children: [
-          Text(
-            '$fieldName: ',
-            style: TextStyle(fontWeight: FontWeight.bold, color: mainColor),
-          ),
-          Text(
+    return Row(
+      children: [
+        Text(
+          '$fieldName: ',
+          style: TextStyle(
+              fontWeight: FontWeight.bold, color: mainColor, fontSize: 10.sp),
+        ),
+        SizedBox(
+          width: 225.sp,
+          child: Text(
             ' ${value ?? 'N/A'}',
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10.sp),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
